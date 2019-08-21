@@ -16,8 +16,8 @@ class RegisterTest extends TestCase
 
     public function test_registration_new_user()
     {
-        $name = $this->faker->firstName;
-        $response = $this->post('/register', [
+        $name = str_random(10);
+        $this->post('/register', [
             'name' => $name,
             'email' => $this->faker->email,
             'password' => Str::random(10)
@@ -33,7 +33,7 @@ class RegisterTest extends TestCase
 
     public function test_registration_new_user_when_the_user_exists()
     {
-        $name = $this->faker->firstName;
+        $name = str_random(10);
         $email = $this->faker->email;
 
         $this->post('/register', [
