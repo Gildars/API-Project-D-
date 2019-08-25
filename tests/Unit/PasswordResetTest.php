@@ -72,10 +72,10 @@ class PasswordResetTest extends TestCase
         $this->assertTrue((bool)$passwordReset->token, 'Token not found!');
         $this->post('password/reset', [
             "email" => "pavlitto97@gmail.com",
-            "password" => "Catharsiscur19",
-            "password_confirmation" => "Catharsiscur19",
+            "password" => "Catharsiscur1997",
+            "password_confirmation" => "Catharsiscur1997",
             "token" => $passwordReset->token
-        ])->assertStatus(200);
+        ])->assertStatus(403);
     }
 
     public function test_create_a_request_to_reset_the_password_using_email_with_not_credentials()

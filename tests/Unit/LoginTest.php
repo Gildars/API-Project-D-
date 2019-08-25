@@ -14,7 +14,7 @@ class LoginTest extends TestCase
     {
         $this->post('/login', [
             'email' => 'pavlitto97@gmail.com',
-            'password' => 'Catharsiscur19'
+            'password' => 'Catharsiscur1997'
         ])->assertJsonStructure([
             'token', 'status_code', 'message'
         ])->assertStatus(200);

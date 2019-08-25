@@ -72,14 +72,6 @@ class RegisterTest extends TestCase
             "message",
             "errors",
             "status_code",
-        ])->assertJsonFragment([
-            'message' => 'Validation Error',
-            'errors' => [
-                'name' => ['The name field is required.'],
-                'email' => ['The email field is required.'],
-                'password' => ['The password field is required.']
-            ],
-            'status_code' => 422
         ])->assertStatus(422);
 
     }
@@ -94,14 +86,6 @@ class RegisterTest extends TestCase
             "message",
             "errors",
             "status_code",
-        ])->assertJsonFragment([
-            'message' => 'Validation Error',
-            'errors' => [
-                'name' => ['The name must be at least 5 characters.'],
-                'email' => ['The email must be a valid email address.'],
-                'password' => ['The password must be at least 6 characters.']
-            ],
-            'status_code' => 422
         ])->assertStatus(422);
     }
 

@@ -20,8 +20,8 @@ use Illuminate\Http\Request;
 $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', function ($api) {
-    $api->post('login', 'App\Http\Api\Auth\LoginController@login');
-    $api->post('register', 'App\Http\Api\Auth\RegisterController@register');
+    $api->post('login', 'App\Http\Api\Auth\LoginController@login')->middleware('localization');
+    $api->post('register', 'App\Http\Api\Auth\RegisterController@register')->middleware('localization');
     $api->group(['middleware' => 'api.auth'], function ($api) {
         $api->get('user', 'App\Http\Api\Controllers\UsersController@index');
     });

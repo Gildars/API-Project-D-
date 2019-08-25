@@ -42,7 +42,7 @@ class LoginController extends Controller
     }
 
     public function sendFailedLoginResponse(){
-        throw new UnauthorizedHttpException("Bad Credentials");
+        throw new UnauthorizedHttpException("Bad Credentials",trans('validation.custom.login.bad_credentials'));
     }
 
     public function logout(){

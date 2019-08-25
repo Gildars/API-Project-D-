@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Api\Auth;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -15,16 +16,17 @@ class RegisterController extends Controller
     use RegistersUsers;
     use Helpers;
 
-    public function register(Request $request){
+    public function register(Request $request)
+    {
 
         $validator = $this->validator($request->all());
-        if($validator->fails()){
+        if ($validator->fails()) {
             throw new StoreResourceFailedException("Validation Error", $validator->errors());
         }
 
         $user = $this->create($request->all());
 
-        if($user){
+        if ($user) {
 
             $token = JWTAuth::fromUser($user);
 
@@ -33,7 +35,7 @@ class RegisterController extends Controller
                 "message" => "User created",
                 "status_code" => 201
             ]);
-        }else{
+        } else {
             return $this->response->error("User Not Found...", 404);
         }
     }
@@ -44,7 +46,15 @@ class RegisterController extends Controller
             'name' => 'required|unique:users|min:5|max:12',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|max:28',
-        ]);
+        ], [], $this->attributes());
+    }
+
+    protected function attributes()
+    {
+        return [
+            'password' => 'пароль',
+            'token' => 'токен'
+        ];
     }
 
     protected function create(array $data)
