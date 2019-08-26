@@ -22,6 +22,7 @@ class PasswordResetController extends Controller
      * Create token password reset
      *
      * @param  [string] email
+     *
      * @return [string] message
      */
     public function create(Request $request)
@@ -30,16 +31,16 @@ class PasswordResetController extends Controller
             'email' => 'required|string|email',
         ]);
         $user = User::where('email', $request->email)->first();
-        if (!$user) {
+        if ( ! $user) {
             return response()->json([
-                'message' => trans('passwords.email_not_found')
+                'message' => trans('passwords.email_not_found'),
             ], 404);
         }
         $passwordReset = PasswordReset::updateOrCreate(
             ['email' => $user->email],
             [
                 'email' => $user->email,
-                'token' => str_random(60)
+                'token' => str_random(60),
             ]
         );
         if ($user && $passwordReset) {
@@ -47,8 +48,9 @@ class PasswordResetController extends Controller
                 new PasswordResetRequest($passwordReset->token)
             );
         }
+
         return response()->json([
-            'message' => trans('passwords.sent')
+            'message' => trans('passwords.sent'),
         ]);
     }
 
@@ -56,24 +58,28 @@ class PasswordResetController extends Controller
      * Find token password reset
      *
      * @param  [string] $token
+     *
      * @return [string] message
      * @return [json] passwordReset object
      */
     public function find($token)
     {
         $passwordReset = PasswordReset::where('token', $token)
-            ->first();
-        if (!$passwordReset) {
+                                      ->first();
+        if ( ! $passwordReset) {
             return response()->json([
-                'message' => trans('passwords.token')
+                'message' => trans('passwords.token'),
             ], 404);
         }
-        if (Carbon::parse($passwordReset->updated_at)->addMinutes(720)->isPast()) {
+        if (Carbon::parse($passwordReset->updated_at)->addMinutes(720)
+                  ->isPast()) {
             $passwordReset->delete();
+
             return response()->json([
-                'message' => trans('passwords.token')
+                'message' => trans('passwords.token'),
             ], 404);
         }
+
         return response()->json($passwordReset);
     }
 
@@ -84,38 +90,40 @@ class PasswordResetController extends Controller
      * @param  [string] password
      * @param  [string] password_confirmation
      * @param  [string] token
+     *
      * @return [string] message
      * @return [json] user object
      */
     public function reset(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => 'required|string|email',
+            'email'    => 'required|string|email',
             'password' => 'required|string|confirmed',
-            'token' => 'required|string'
+            'token'    => 'required|string',
         ], [], $this->attributes());
         if ($validator->fails()) {
-            throw new StoreResourceFailedException("Validation Error", $validator->errors());
+            throw new StoreResourceFailedException("Validation Error",
+                $validator->errors());
         }
         $passwordReset = PasswordReset::where([
             ['token', $request->token],
-            ['email', $request->email]
+            ['email', $request->email],
         ])->first();
-        if (!$passwordReset) {
+        if ( ! $passwordReset) {
             return response()->json([
-                'message' => trans('passwords.token')
+                'message' => trans('passwords.token'),
             ], 404);
         }
         $user = User::where('email', $passwordReset->email)->first();
-        if (!$user) {
+        if ( ! $user) {
             return response()->json([
-                'message' => trans('passwords.email_not_found')
+                'message' => trans('passwords.email_not_found'),
             ], 404);
         }
 
         if ($user && Hash::check($request->password, $user->password)) {
             return response()->json([
-                'message' => trans('passwords.not_match')
+                'message' => trans('passwords.not_match'),
             ], 403);
         }
 
@@ -123,6 +131,7 @@ class PasswordResetController extends Controller
         $user->save();
         $passwordReset->delete();
         $user->notify(new PasswordResetSuccess($passwordReset));
+
         return response()->json($user);
     }
 
@@ -130,7 +139,7 @@ class PasswordResetController extends Controller
     {
         return [
             'password' => 'пароль',
-            'token' => 'токен'
+            'token'    => 'токен',
         ];
     }
 }

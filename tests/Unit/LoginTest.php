@@ -13,26 +13,29 @@ class LoginTest extends TestCase
     public function test_user_can_login_with_correct_credentials()
     {
         $this->post('/login', [
-            'email' => 'pavlitto97@gmail.com',
-            'password' => 'Catharsiscur1997'
+            'email'    => 'pavlitto97@gmail.com',
+            'password' => 'Catharsiscur1997',
         ])->assertJsonStructure([
-            'token', 'status_code', 'message'
+            'token',
+            'status_code',
+            'message',
         ])->assertStatus(200);
     }
 
     public function test_user_can_login_with_not_correct_credentials()
     {
         $this->post('/login', [
-            'email' => 'pavlitto97@gmail.com',
-            'password' => 'Hfiksfjpow'
+            'email'    => 'pavlitto97@gmail.com',
+            'password' => 'Hfiksfjpow',
         ])->assertJsonStructure(['message'])
-            ->assertStatus(401);
+             ->assertStatus(401);
     }
+
     public function test_user_can_login_with_not_credentials()
     {
         $this->post('/login', [
-            'email' => '',
-            'password' => ''
+            'email'    => '',
+            'password' => '',
         ])->assertStatus(401);
     }
 }

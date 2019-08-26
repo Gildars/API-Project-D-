@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Api\Auth;
+
 use App\User;
 use Dingo\Api\Routing\Helpers;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -15,37 +16,45 @@ class LoginController extends Controller
     use AuthenticatesUsers;
     use Helpers;
 
-    public function login(Request $request){
+    public function login(Request $request)
+    {
 
-        $user = User::where('email', $request->email)->orWhere('name', $request->email)->first();
+        $user = User::where('email', $request->email)
+                    ->orWhere('name', $request->email)->first();
 
-        if($user && Hash::check($request->get('password'), $user->password)){
+        if ($user && Hash::check($request->get('password'), $user->password)) {
             $token = JWTAuth::fromUser($user);
+
             return $this->sendLoginResponse($request, $token);
         }
 
         return $this->sendFailedLoginResponse($request);
     }
 
-    public function sendLoginResponse(Request $request, $token){
+    public function sendLoginResponse(Request $request, $token)
+    {
         $this->clearLoginAttempts($request);
 
         return $this->authenticated($token);
     }
 
-    public function authenticated($token){
+    public function authenticated($token)
+    {
         return $this->response->array([
-            'token' => $token,
+            'token'       => $token,
             'status_code' => 200,
-            'message' => 'User Authenticated'
+            'message'     => 'User Authenticated',
         ]);
     }
 
-    public function sendFailedLoginResponse(){
-        throw new UnauthorizedHttpException("Bad Credentials",trans('validation.custom.login.bad_credentials'));
+    public function sendFailedLoginResponse()
+    {
+        throw new UnauthorizedHttpException("Bad Credentials",
+            trans('validation.custom.login.bad_credentials'));
     }
 
-    public function logout(){
+    public function logout()
+    {
         $this->guard()->logout();
     }
 }

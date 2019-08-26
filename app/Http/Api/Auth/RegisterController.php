@@ -21,7 +21,8 @@ class RegisterController extends Controller
 
         $validator = $this->validator($request->all());
         if ($validator->fails()) {
-            throw new StoreResourceFailedException("Validation Error", $validator->errors());
+            throw new StoreResourceFailedException("Validation Error",
+                $validator->errors());
         }
 
         $user = $this->create($request->all());
@@ -31,9 +32,9 @@ class RegisterController extends Controller
             $token = JWTAuth::fromUser($user);
 
             return $this->response->array([
-                "token" => $token,
-                "message" => "User created",
-                "status_code" => 201
+                "token"       => $token,
+                "message"     => "User created",
+                "status_code" => 201,
             ]);
         } else {
             return $this->response->error("User Not Found...", 404);
@@ -43,8 +44,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|unique:users|min:5|max:12',
-            'email' => 'required|email|max:255|unique:users',
+            'name'     => 'required|unique:users|min:5|max:12',
+            'email'    => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|max:28',
         ], [], $this->attributes());
     }
@@ -53,15 +54,15 @@ class RegisterController extends Controller
     {
         return [
             'password' => 'пароль',
-            'token' => 'токен'
+            'token'    => 'токен',
         ];
     }
 
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+            'name'     => $data['name'],
+            'email'    => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
     }

@@ -13,7 +13,9 @@ class UsersController extends Controller
     {
         $this->middleware('api.auth');
     }
-    public function index(){
+
+    public function index()
+    {
 //        return User::all();
         $user = $this->auth->user();
 
