@@ -16,6 +16,7 @@ class LoginController extends Controller
     use AuthenticatesUsers;
     use Helpers;
 
+
     public function login(Request $request)
     {
 

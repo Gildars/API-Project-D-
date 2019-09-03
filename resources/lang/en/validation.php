@@ -128,9 +128,10 @@ return [
     |
     */
 
-    'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+    'custom'               => [
+        'login' => [
+            'required'        => '',
+            'bad_credentials' => 'Wrong login or password',
         ],
     ],
 
