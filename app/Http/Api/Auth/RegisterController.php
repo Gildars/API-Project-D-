@@ -2,6 +2,7 @@
 
 namespace App\Http\Api\Auth;
 
+use App\CharacterClass;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -9,6 +10,7 @@ use Dingo\Api\Exception\StoreResourceFailedException;
 use Dingo\Api\Routing\Helpers;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class RegisterController extends Controller
@@ -44,10 +46,22 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name'     => 'required|unique:users|min:5|max:12',
-            'email'    => 'required|email|max:255|unique:users',
+            'email'    => 'required|email|max:255|unique:user',
             'password' => 'required|min:6|max:28',
-        ], [], $this->attributes());
+        ], [],
+            $this->attributes());
+    }
+
+    protected function validatorCharacter(array $data)
+    {
+        $classes = CharacterClass::all('id')->getQueueableIds();
+        return Validator::make($data, [
+            'name'  => 'required|alpha|min:2|max:12|unique:user',
+            'class' => [
+                'required',
+                Rule::in($classes),
+            ],
+        ]);
     }
 
     protected function attributes()
@@ -61,10 +75,28 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name'     => $data['name'],
             'email'    => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    protected function createCharacter(Request $request)
+    {
+        $this->middleware('api.auth');
+        $validator = $this->validatorCharacter($request->all());
+        if ($validator->fails()) {
+            throw new StoreResourceFailedException('Validation Error',
+                $validator->errors());
+        }
+        $user = $this->auth()->user();
+        if ( ! $user->name) {
+            $user->name = $request['name'];
+            $user->update();
+
+            return $this->response->array([
+                $user,
+            ]);
+        }
     }
 
 }
