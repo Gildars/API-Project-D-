@@ -15,7 +15,7 @@ class CreateClassTable extends Migration
     {
         Schema::create('class', function (Blueprint $table) {
             $table->smallIncrements('id');
-            $table->string('name',40);
+            $table->string('name', 40);
         });
     }
 
@@ -26,6 +26,6 @@ class CreateClassTable extends Migration
      */
     public function down()
     {
-      Schema::dropIfExists('class');
+        Schema::dropIfExists('class');
     }
 }

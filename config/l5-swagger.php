@@ -41,15 +41,15 @@ return [
         | Middleware allows to prevent unexpected access to API documentation
         |--------------------------------------------------------------------------
          */
-        'middleware' => [
-            'api' => [],
-            'asset' => [],
-            'docs' => [],
+        'middleware'      => [
+            'api'             => [],
+            'asset'           => [],
+            'docs'            => [],
             'oauth2_callback' => [],
         ],
     ],
 
-    'paths' => [
+    'paths'    => [
         /*
         |--------------------------------------------------------------------------
         | Absolute path to location where parsed swagger annotations will be stored
@@ -221,7 +221,8 @@ return [
     | Uncomment to add constants which can be used in annotations
     |--------------------------------------------------------------------------
      */
-    'constants' => [
-        'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', 'http://api.elonica.local/'),
+    'constants'     => [
+        'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST',
+            'http://api.elonica.local/'),
     ],
 ];

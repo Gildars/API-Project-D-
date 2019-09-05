@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ColumnNameMayBeNull extends Migration
+class CreateMailConfirmation extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class ColumnNameMayBeNull extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('name', 12)->nullable()->change();
+        Schema::create('mail_confirmation', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('email')->index();
+            $table->string('token');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class ColumnNameMayBeNull extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('name')->change();
-        });
+        Schema::dropIfExists('mail_confirmation');
     }
 }

@@ -128,7 +128,7 @@ return [
     |
     */
 
-    'custom'               => [
+    'custom' => [
         'login' => [
             'required'        => '',
             'bad_credentials' => 'Wrong login or password',

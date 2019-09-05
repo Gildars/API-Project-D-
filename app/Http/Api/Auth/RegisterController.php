@@ -55,6 +55,7 @@ class RegisterController extends Controller
     protected function validatorCharacter(array $data)
     {
         $classes = CharacterClass::all('id')->getQueueableIds();
+
         return Validator::make($data, [
             'name'  => 'required|alpha|min:2|max:12|unique:user',
             'class' => [

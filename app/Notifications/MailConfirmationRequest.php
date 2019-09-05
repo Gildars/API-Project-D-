@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class PasswordResetRequest extends Notification implements ShouldQueue
+class MailConfirmationRequest extends Notification implements ShouldQueue
 {
     use Queueable;
     protected $token;
@@ -46,10 +46,10 @@ class PasswordResetRequest extends Notification implements ShouldQueue
         $url = url('/user/mailConfirm/' . $this->token);
 
         return (new MailMessage)
-            ->line(trans('notifications.password_reset_request.info'))
-            ->action(trans('notifications.password_reset_request.btn_reset'),
+            ->line(trans('notifications.mail_confirmation_request.info'))
+            ->action(trans('notifications.mail_confirmation_request.btn_confirm'),
                 url($url))
-            ->line(trans('notifications.password_reset_request.msg_not_reset'));
+            ->line(trans('notifications.mail_confirmation_request.msg_not_confirm'));
     }
 
     /**
