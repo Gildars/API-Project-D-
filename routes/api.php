@@ -37,7 +37,7 @@ $api->version('v1', function ($api) {
                 'App\Http\Api\Controllers\UsersController@mailConfirmCreate');
             $api->get('user/mailConfirm/{token}',
                 'App\Http\Api\Controllers\UsersController@mailConfirm');
-
+            $api->post('friends/{id}','App\Http\Api\Controllers\FriendsController@add');
         });
     });
 

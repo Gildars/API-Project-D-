@@ -1,312 +1,332 @@
 {
-  "openapi": "3.0.0",
-  "info": {
-    "title": "This is the API documentation for the Elonica project.",
-    "description": "This is the API documentation for the Elonica project.",
-    "contact": {
-      "email": "pavlito97@gmail.com"
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "This is the API documentation for the Elonica project.",
+    "description" : "This is the API documentation for the Elonica project.",
+    "contact" : {
+      "email" : "pavlito97@gmail.com"
     },
-    "license": {
-      "name": "Apache 2.0",
-      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "version": "1.0.0"
+    "version" : "1.0.0"
   },
-  "servers": [
-    {
-      "url": "/"
-    }
-  ],
-  "tags": [
-    {
-      "name": "greeting",
-      "description": "Sample package to test out the greeting APIs"
-    }
-  ],
-  "paths": {
-    "/login": {
-      "post": {
-        "tags": [
-          "Login"
-        ],
-        "description": "Returns project data",
-        "parameters": [
-          {
-            "name": "email",
-            "in": "path",
-            "description": "User email",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "password",
-            "in": "path",
-            "description": "User password",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-localization",
-            "in": "header",
-            "description": "Localization language",
-            "required": false,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string"
-            }
+  "servers" : [ {
+    "url" : "/"
+  } ],
+  "tags" : [ {
+    "name" : "greeting",
+    "description" : "Sample package to test out the greeting APIs"
+  } ],
+  "paths" : {
+    "/login" : {
+      "post" : {
+        "tags" : [ "Login" ],
+        "description" : "Returns project data",
+        "parameters" : [ {
+          "name" : "email",
+          "in" : "path",
+          "description" : "User email",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful login"
+        }, {
+          "name" : "password",
+          "in" : "path",
+          "description" : "User password",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "X-localization",
+          "in" : "header",
+          "description" : "Localization language",
+          "required" : false,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful login"
           },
-          "401": {
-            "description": "Bad Credentials"
+          "401" : {
+            "description" : "Bad Credentials"
           },
-          "404": {
-            "description": "User Not Found"
+          "404" : {
+            "description" : "User Not Found"
           }
         }
       }
     },
-    "/register": {
-      "post": {
-        "tags": [
-          "Registration"
-        ],
-        "description": "Returns project data",
-        "parameters": [
-          {
-            "name": "email",
-            "in": "path",
-            "description": "User email",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "password",
-            "in": "path",
-            "description": "User password",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-localization",
-            "in": "header",
-            "description": "Localization language",
-            "required": false,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string"
-            }
+    "/register" : {
+      "post" : {
+        "tags" : [ "Registration" ],
+        "description" : "Returns project data",
+        "parameters" : [ {
+          "name" : "email",
+          "in" : "path",
+          "description" : "User email",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful login"
+        }, {
+          "name" : "password",
+          "in" : "path",
+          "description" : "User password",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "X-localization",
+          "in" : "header",
+          "description" : "Localization language",
+          "required" : false,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful login"
           },
-          "404": {
-            "description": "User Not Found"
+          "404" : {
+            "description" : "User Not Found"
           },
-          "422": {
-            "description": "Validation Error"
+          "422" : {
+            "description" : "Validation Error"
           }
         }
       }
     },
-    "/password/create": {
-      "post": {
-        "tags": [
-          "Password reset"
-        ],
-        "description": "Sends an email to the user",
-        "parameters": [
-          {
-            "name": "email",
-            "in": "path",
-            "description": "User email",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string"
-            }
+    "/password/create" : {
+      "post" : {
+        "tags" : [ "Password reset" ],
+        "description" : "Sends an email to the user",
+        "parameters" : [ {
+          "name" : "email",
+          "in" : "path",
+          "description" : "User email",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully sent an email"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully sent an email"
           },
-          "404": {
-            "description": "User Not Found"
+          "404" : {
+            "description" : "User Not Found"
           },
-          "422": {
-            "description": "Validation Error"
+          "422" : {
+            "description" : "Validation Error"
           }
         }
       }
     },
-    "/password/find/{token}": {
-      "get": {
-        "tags": [
-          "Password reset"
-        ],
-        "description": "Resets password using token",
-        "parameters": [
-          {
-            "name": "token",
-            "in": "path",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string"
-            }
+    "/password/find/{token}" : {
+      "get" : {
+        "tags" : [ "Password reset" ],
+        "description" : "Resets password using token",
+        "parameters" : [ {
+          "name" : "token",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully sent an email"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully sent an email"
           },
-          "404": {
-            "description": "Token Not Found"
+          "404" : {
+            "description" : "Token Not Found"
           },
-          "422": {
-            "description": "Validation Error"
+          "422" : {
+            "description" : "Validation Error"
           }
         }
       }
     },
-    "/password/reset": {
-      "post": {
-        "tags": [
-          "Password reset"
-        ],
-        "description": "Sends an email to the user",
-        "parameters": [
-          {
-            "name": "email",
-            "in": "path",
-            "description": "User email",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "password",
-            "in": "path",
-            "description": "User password",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "token",
-            "in": "path",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string"
-            }
+    "/password/reset" : {
+      "post" : {
+        "tags" : [ "Password reset" ],
+        "description" : "Sends an email to the user",
+        "parameters" : [ {
+          "name" : "email",
+          "in" : "path",
+          "description" : "User email",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfull reset password"
+        }, {
+          "name" : "password",
+          "in" : "path",
+          "description" : "User password",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "token",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfull reset password"
           },
-          "404": {
-            "description": "User Not Found"
+          "404" : {
+            "description" : "User Not Found"
           },
-          "422": {
-            "description": "Validation Error"
+          "422" : {
+            "description" : "Validation Error"
           }
         }
       }
     },
-    "/createCharacter": {
-      "post": {
-        "tags": [
-          "Create character"
-        ],
-        "description": "Returns user data",
-        "parameters": [
-          {
-            "name": "name",
-            "in": "path",
-            "description": "Character name",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "class",
-            "in": "path",
-            "description": "Character class",
-            "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "X-localization",
-            "in": "header",
-            "description": "Localization language",
-            "required": false,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string"
-            }
+    "/createCharacter" : {
+      "post" : {
+        "tags" : [ "Registration" ],
+        "description" : "Returns user data",
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "path",
+          "description" : "Character name",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful"
+        }, {
+          "name" : "class",
+          "in" : "path",
+          "description" : "Character class",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "X-localization",
+          "in" : "header",
+          "description" : "Localization language",
+          "required" : false,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful"
           },
-          "422": {
-            "description": "Validation Error"
+          "422" : {
+            "description" : "Validation Error"
+          }
+        }
+      }
+    },
+    "/user/mailConfirmCreate" : {
+      "get" : {
+        "tags" : [ "User" ],
+        "description" : "Returns user data",
+        "parameters" : [ {
+          "name" : "X-localization",
+          "in" : "header",
+          "description" : "Localization language",
+          "required" : false,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful"
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "422" : {
+            "description" : "Validation Error"
+          }
+        }
+      }
+    },
+    "/frends" : {
+      "post" : {
+        "tags" : [ "Frends" ],
+        "description" : "Returns user data",
+        "parameters" : [ {
+          "name" : "X-localization",
+          "in" : "header",
+          "description" : "Localization language",
+          "required" : false,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful"
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "422" : {
+            "description" : "Validation Error"
           }
         }
       }
     }
   },
-  "components": {
-    "schemas": {},
-    "securitySchemes": {
-      "api_key": {
-        "type": "apiKey",
-        "name": "Authorization",
-        "in": "header"
+  "components" : {
+    "schemas" : { },
+    "securitySchemes" : {
+      "api_key" : {
+        "type" : "apiKey",
+        "name" : "Authorization",
+        "in" : "header"
       }
     }
   }
