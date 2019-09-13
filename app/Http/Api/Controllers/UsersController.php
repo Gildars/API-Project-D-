@@ -7,6 +7,7 @@ use App\Notifications\MailConfirmationRequest;
 use Carbon\Carbon;
 use Dingo\Api\Routing\Helpers;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
 {
@@ -63,14 +64,14 @@ class UsersController extends Controller
 
         $mailConfirmation = MailConfirmation::where('token', $token)->first();
 
-        if ( ! $mailConfirmation) {
+        if (!$mailConfirmation) {
             return response()->json([
                 'message' => trans('messages.user.mail_confirmation.request.token'),
             ], 404);
         }
 
         if (Carbon::parse($mailConfirmation->updated_at)->addMinutes(720)
-                  ->isPast()) {
+            ->isPast()) {
             $mailConfirmation->delete();
 
             return response()->json([
@@ -79,12 +80,19 @@ class UsersController extends Controller
         }
 
         if ($mailConfirmation->token == $token) {
-            $user                    = $this->auth->user();
+            $user = $this->auth->user();
             $user->email_verified_at = Carbon::now();
             $user->update();
 
             return response()->json(trans('messages.user.mail_confirmation.request.success'));
         }
 
+    }
+
+    protected function validator(
+        array $data,
+        array $rules
+    ) {
+        return Validator::make($data, $rules);
     }
 }

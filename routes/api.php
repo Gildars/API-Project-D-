@@ -28,7 +28,10 @@ $api->version('v1', function ($api) {
         $api->post('register', 'App\Http\Api\Auth\RegisterController@register');
 
         $api->group([
-            'middleware' => 'api.auth',
+            'middleware' => [
+                'api.auth',
+                'LastActivityUser'
+                ],
         ], function ($api) {
             $api->get('user', 'App\Http\Api\Controllers\UsersController@index');
             $api->post('createCharacter',
@@ -37,13 +40,15 @@ $api->version('v1', function ($api) {
                 'App\Http\Api\Controllers\UsersController@mailConfirmCreate');
             $api->get('user/mailConfirm/{token}',
                 'App\Http\Api\Controllers\UsersController@mailConfirm');
-            $api->post('friends/{id}','App\Http\Api\Controllers\FriendsController@add');
+            $api->post('friends/{id}', 'App\Http\Api\Controllers\FriendsController@add');
+            $api->get('/friends', 'App\Http\Api\Controllers\FriendsController@getFriends');
+            $api->delete('/friends/{id}', 'App\Http\Api\Controllers\FriendsController@deleteFriend');
         });
     });
 
     $api->group([
         'middleware' => 'api',
-        'prefix'     => 'password',
+        'prefix' => 'password',
     ], function ($api) {
 
         $api->post('create',

@@ -2,8 +2,8 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
@@ -12,7 +12,6 @@ class User extends Authenticatable implements JWTSubject
     use Notifiable;
 
     protected $table = 'user';
-
 
     /**
      * The attributes that are mass assignable.
@@ -24,6 +23,7 @@ class User extends Authenticatable implements JWTSubject
             'name',
             'email',
             'password',
+            'last_activity'
         ];
 
     /**
@@ -65,5 +65,14 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function isOnline($column = null)
+    {
+        $expiresAt = Carbon::now()->subMinute(5);
+        if ($column) {
+            return ($this->{$column} > $expiresAt) ? true : false;
+        }
+        return ($this->last_activity > $expiresAt) ? true : false;
     }
 }

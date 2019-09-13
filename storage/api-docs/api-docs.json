@@ -291,10 +291,10 @@
         }
       }
     },
-    "/frends" : {
-      "post" : {
-        "tags" : [ "Frends" ],
-        "description" : "Returns user data",
+    "/friends" : {
+      "get" : {
+        "tags" : [ "Friends" ],
+        "description" : "Returns friends",
         "parameters" : [ {
           "name" : "X-localization",
           "in" : "header",
@@ -315,6 +315,75 @@
           },
           "422" : {
             "description" : "Validation Error"
+          }
+        }
+      }
+    },
+    "/friends/{id}" : {
+      "post" : {
+        "tags" : [ "Friends" ],
+        "description" : "Adds character to friends",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "X-localization",
+          "in" : "header",
+          "description" : "Localization language",
+          "required" : false,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful"
+          },
+          "201" : {
+            "description" : "Created"
+          },
+          "422" : {
+            "description" : "Validation Error"
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Friends" ],
+        "description" : "Removes the character from friends",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "X-localization",
+          "in" : "header",
+          "description" : "Localization language",
+          "required" : false,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful"
+          },
+          "404" : {
+            "description" : "Not Found"
           }
         }
       }
