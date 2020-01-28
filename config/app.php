@@ -172,9 +172,10 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Nahid\Talk\TalkServiceProvider::class,
 
     ],
 
@@ -228,6 +229,7 @@ return [
         'View'         => Illuminate\Support\Facades\View::class,
         // Many front
         'JWTAuth'      => Tymon\JWTAuth\Facades\JWTAuth::class,
+        'Talk'         => Nahid\Talk\Facades\Talk::class,
     ],
 
 ];

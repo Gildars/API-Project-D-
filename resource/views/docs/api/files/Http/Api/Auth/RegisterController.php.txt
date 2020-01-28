@@ -1,0 +1,61 @@
+<?php
+
+namespace App\Http\Api\Auth;
+
+use App\Http\Controllers\BaseController;
+use App\Http\Requests\Auth\StoreUserRequests;
+use App\Http\Requests\User\UpdateCharacterRequests;
+use App\Models\User;
+use Dingo\Api\Routing\Helpers;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Tymon\JWTAuth\Facades\JWTAuth;
+
+class RegisterController extends BaseController
+{
+    use RegistersUsers;
+    use Helpers;
+
+    public function register(StoreUserRequests $request)
+    {
+        $request->validated();
+        $user = $this->create($request->all());
+        if ($user) {
+            $token = JWTAuth::fromUser($user);
+
+            return response()->json([
+                "token" => $token,
+                "message" => "User created",
+                "status_code" => 201,
+            ]);
+
+        } else {
+            return response()->json("User Not Found...", 404);
+        }
+    }
+
+
+    protected function create(array $data)
+    {
+        return User::create([
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+        ]);
+    }
+
+    protected function createCharacter(UpdateCharacterRequests $request)
+    {
+        $this->middleware('api.auth');
+
+        $user = $this->auth()->user();
+        if (!$user->name) {
+            $user->name = $request['name'];
+            $user->update();
+
+            return response()->json([
+                $user,
+            ], 201);
+        }
+    }
+
+}
+

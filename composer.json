@@ -13,19 +13,25 @@
     "dingo/api": "^2.3",
     "doctrine/dbal": "^2.9",
     "fideloper/proxy": "^4.0",
+    "fruitcake/laravel-cors": "^1.0",
     "laravel/framework": "5.8.*",
     "laravel/tinker": "^1.0",
+    "nahid/talk": "^2.3",
     "nesbot/carbon": "^2.23",
-    "zircote/swagger-php": "~2.0|3.*",
-    "swagger-api/swagger-ui": "^3.0"
+    "predis/predis": "^1.1",
+    "rinvex/laravel-repositories": "^5.0.1",
+    "swagger-api/swagger-ui": "^3.0",
+    "zircote/swagger-php": "~2.0|3.*"
   },
   "require-dev": {
+    "barryvdh/laravel-debugbar": "^3.2",
     "beyondcode/laravel-dump-server": "^1.0",
     "filp/whoops": "^2.0",
     "fzaninotto/faker": "^1.4",
     "mockery/mockery": "^1.0",
     "nunomaduro/collision": "^3.0",
     "phpunit/phpunit": "^7.5",
+    "squizlabs/php_codesniffer": "^3.5",
     "tymon/jwt-auth": "^1.0"
   },
   "config": {

@@ -198,8 +198,10 @@ return [
     |
     */
 
-    'transformer' => env('API_TRANSFORMER',
-        Dingo\Api\Transformer\Adapter\Fractal::class),
+    'transformer' => env(
+        'API_TRANSFORMER',
+        Dingo\Api\Transformer\Adapter\Fractal::class
+    ),
 
     /*
     |--------------------------------------------------------------------------
@@ -223,8 +225,10 @@ return [
     'formatsOptions' => [
 
         'json' => [
-            'pretty_print' => env('API_JSON_FORMAT_PRETTY_PRINT_ENABLED',
-                false),
+            'pretty_print' => env(
+                'API_JSON_FORMAT_PRETTY_PRINT_ENABLED',
+                false
+            ),
             'indent_style' => env('API_JSON_FORMAT_INDENT_STYLE', 'space'),
             'indent_size'  => env('API_JSON_FORMAT_INDENT_SIZE', 2),
         ],

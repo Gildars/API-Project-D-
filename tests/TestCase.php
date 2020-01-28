@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
@@ -12,13 +12,16 @@ abstract class TestCase extends BaseTestCase
     public function loginWithFakeUser()
     {
         $request = $this->post('/login', [
-            'email' => 'test@gmail.com',
-            'password' => 'Catharsiscur19',
+            'email' => 'test1@gmail.com',
+            'password' => 'Catharsis',
         ])->assertJsonStructure(['message'])
             ->assertStatus(200);
         $token = ($request->baseResponse->original['token']);
-        $headers = ['Authorization' => "Bearer $token"];
-        $user = $this->get('/user', $headers)->assertStatus(200);
+        $headers = [
+            'Authorization' => "Bearer $token",
+            'Content-Type' => 'application/json'
+        ];
+        $user = $this->get('/users', $headers)->assertStatus(200);
         return [
             'data' => [
                 $request->original,

@@ -43,12 +43,14 @@ class PasswordResetRequest extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        $url = url('/user/mailConfirm/' . $this->token);
+        $url = url('/password/find/' . $this->token);
 
         return (new MailMessage)
             ->line(trans('notifications.password_reset_request.info'))
-            ->action(trans('notifications.password_reset_request.btn_reset'),
-                url($url))
+            ->action(
+                trans('notifications.password_reset_request.btn_reset'),
+                url($url)
+            )
             ->line(trans('notifications.password_reset_request.msg_not_reset'));
     }
 

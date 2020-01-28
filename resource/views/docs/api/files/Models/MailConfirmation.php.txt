@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class MailConfirmation extends Model
+{
+
+    protected $table = 'mail_confirmations';
+
+    protected $fillable
+        = [
+            'email',
+            'token',
+        ];
+}
+

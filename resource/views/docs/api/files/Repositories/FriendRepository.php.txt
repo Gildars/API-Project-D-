@@ -1,0 +1,84 @@
+<?php
+
+namespace App\Repositories;
+
+use App\Models\Friend;
+use App\Models\User;
+
+class FriendRepository extends BaseRepository
+{
+    protected $friend;
+
+    protected $user;
+
+    public function __construct(Friend $friend, User $user)
+    {
+        $this->friend = $friend;
+        $this->user = $user;
+    }
+
+    public function getById($id)
+    {
+        return $this->friend
+            ->where('id_friend_one', '=', $id)
+            ->orWhere('id_friend_two', '=', $id)
+            ->first();
+    }
+
+    public function create($userId, $friendId)
+    {
+        $friend = new $this->friend;
+        $friend->id_friend_one = $userId;
+        $friend->id_friend_two = $friendId;
+        $friend->save();
+        return $friend;
+    }
+
+    public function getFriends(int $id)
+    {
+        $friends = $this->user
+            ->join('friends',
+                function ($join) {
+                    $join->on('friends.id_friend_one', '=', 'users.id')
+                        ->orOn('friends.id_friend_two', '=', 'users.id');
+                })
+            ->where('users.id', '!=', $id)
+            ->orWhere(function ($query) {
+                $query->where('users.id', '=', 'friends.id_friend_one')
+                    ->orWhere('users.id', '=', 'friends.id_friend_two');
+            })
+            ->orderBy('isOnline', 'DESC')
+            ->get(['users.id', 'users.name', 'users.last_activity AS isOnline']);
+
+        foreach ($friends as $friend) {
+            $friend->isOnline = $friend->isOnline('isOnline');
+        }
+    }
+
+    public function getFriend(int $userId, int $friendId)
+    {
+        $friend = $this->friend->rightJoin('users',
+            function ($join) {
+                $join->on('friends.id_friend_one', '=', 'users.id')
+                    ->orOn('friends.id_friend_two', '=', 'users.id');
+            })
+            ->where(function ($query) use ($friendId, $userId) {
+                $query->where('friends.id_friend_one', '=', $friendId)
+                    ->where('friends.id_friend_two', '=', $userId);
+            })
+            ->orWhere(function ($query) use ($friendId, $userId) {
+                $query->where('friends.id_friend_one', '=', $userId)
+                    ->where('friends.id_friend_two', '=', $friendId);
+            })
+            ->first(['friends.id AS id', 'users.name']);
+
+        return $friend;
+    }
+
+    public function deleteFriend(Friend $friend)
+    {
+        $result = $friend->delete();
+        return $result;
+    }
+}
+

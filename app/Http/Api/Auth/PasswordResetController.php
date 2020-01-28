@@ -2,144 +2,210 @@
 
 namespace App\Http\Api\Auth;
 
-use App\Http\Controllers\Controller;
-use Dingo\Api\Exception\StoreResourceFailedException;
+use App\Http\Controllers\BaseController;
+use App\Http\Requests\Auth\StorePasswordResetRequest;
+use App\Http\Requests\Auth\UpdatePasswordRequests;
+use App\Repositories\PasswordResetRepository;
+use App\Repositories\UserRepository;
+use App\Services\Auth\LoginService;
+use App\Services\Auth\PasswordResetService;
 use Dingo\Api\Routing\Helpers;
-use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Notifications\PasswordResetRequest;
 use App\Notifications\PasswordResetSuccess;
-use App\User;
-use App\PasswordReset;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
-class PasswordResetController extends Controller
+/**
+ * Class PasswordResetController
+ *
+ * @package App\Http\Api\Auth
+ */
+class PasswordResetController extends BaseController
 {
     use Helpers;
 
     /**
-     * Create token password reset
-     *
-     * @param  [string] email
-     *
-     * @return [string] message
+     * @var PasswordResetRepository
      */
-    public function create(Request $request)
+    protected $passwordResetRepository;
+
+    /**
+     * @var PasswordResetService
+     */
+    protected $passwordResetService;
+
+    /**
+     * PasswordResetController constructor.
+     *
+     * @param PasswordResetRepository $passwordResetRepository
+     * @param PasswordResetService    $passwordResetService
+     */
+    public function __construct(
+        PasswordResetRepository $passwordResetRepository,
+        PasswordResetService $passwordResetService
+    ) {
+        parent::__construct();
+        $this->passwordResetRepository = $passwordResetRepository;
+        $this->passwordResetService = $passwordResetService;
+    }
+
+    /**
+     * @OA\Post(
+     *     path="/password/create",
+     *     description="Отправляет письмо на почту для вотановления аккаунта.",
+     *     tags={"password"},
+     * @OA\Parameter(
+     *     name="email",
+     *     in="query",
+     *     required=true,
+     * @OA\Schema(
+     *             type="string",
+     *         )
+     * ),
+     * @OA\Response(response="200", description="Письмо дял востановления аккаунта отправлено на почту."),
+     * @OA\Response(response="422", description="Ошибка валидации."),
+     * )
+     * @param                       StorePasswordResetRequest $request
+     * @param                       UserRepository            $userRepository
+     * @return                      \Illuminate\Http\JsonResponse
+     */
+    public function create(StorePasswordResetRequest $request, UserRepository $userRepository)
     {
-        $request->validate([
-            'email' => 'required|string|email',
-        ]);
-        $user = User::where('email', $request->email)->first();
-        if ( ! $user) {
-            return response()->json([
-                'message' => trans('passwords.email_not_found'),
-            ], 404);
-        }
-        $passwordReset = PasswordReset::updateOrCreate(
-            ['email' => $user->email],
-            [
-                'email' => $user->email,
-                'token' => str_random(60),
-            ]
-        );
-        if ($user && $passwordReset) {
+        $user = $userRepository->getByEmail($request->email);
+
+        if ($user && ($passwordReset = $this->passwordResetService->createOrUpdateRequestToResetPassword($request))) {
             $user->notify(
                 new PasswordResetRequest($passwordReset->token)
             );
         }
 
-        return response()->json([
-            'message' => trans('passwords.sent'),
-        ]);
+        return response()->json(
+            [
+                'message' => trans('passwords.sent'),
+            ],
+            200
+        );
     }
 
+
+    /**
+     * @OA\Get(
+     *     path="/password/find{token}",
+     *     description="Ищет и токен востановления пароля.",
+     *     tags={"password"},
+     * @OA\Parameter(
+     *     name="token",
+     *     in="path",
+     *     required=true,
+     * @OA\Schema(
+     *             type="string",
+     *         )
+     * ),
+     * @OA\Response(response="200", description="Токен найден."),
+     * @OA\Response(response="404", description="Токен не найден."),
+     * @OA\Response(response="422", description="Не корректный токен."),
+     * )
+     */
     /**
      * Find token password reset
      *
-     * @param  [string] $token
-     *
-     * @return [string] message
-     * @return [json] passwordReset object
+     * @param  string $token
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function find($token)
+    public function find(string $token)
     {
-        $passwordReset = PasswordReset::where('token', $token)
-                                      ->first();
-        if ( ! $passwordReset) {
-            return response()->json([
-                'message' => trans('passwords.token'),
-            ], 404);
+        $passwordReset = $this->passwordResetRepository->getByToken($token);
+        if (!$passwordReset) {
+            return response()->json(
+                [
+                    'message' => trans('passwords.token'),
+                ],
+                404
+            );
         }
-        if (Carbon::parse($passwordReset->updated_at)->addMinutes(720)
-                  ->isPast()) {
+        if (Carbon::parse($passwordReset->updated_at)->addMinutes(720)->isPast()) {
             $passwordReset->delete();
 
-            return response()->json([
-                'message' => trans('passwords.token'),
-            ], 404);
+            return response()->json(
+                [
+                    'message' => trans('passwords.token'),
+                ],
+                404
+            );
         }
 
-        return response()->json($passwordReset);
+        return response()->json($passwordReset, 200);
     }
 
     /**
-     * Reset password
-     *
-     * @param  [string] email
-     * @param  [string] password
-     * @param  [string] password_confirmation
-     * @param  [string] token
-     *
-     * @return [string] message
-     * @return [json] user object
+     * @OA\Post(
+     *     path="/password/reset",
+     *     description="Сохраняет новый пароль.",
+     *     tags={"password"},
+     * @OA\Parameter(
+     *     name="token",
+     *     in="query",
+     *     required=true,
+     * @OA\Schema(
+     *             type="string",
+     *         ),
+     *     ),
+     * @OA\Parameter(
+     *     name="password",
+     *     in="query",
+     *     required=true,
+     * @OA\Schema(
+     *             type="string",
+     *         ),
+     *     ),
+     * @OA\Parameter(
+     *     name="email",
+     *     in="query",
+     *     required=true,
+     * @OA\Schema(
+     *             type="string",
+     *         )
+     * ),
+     * @OA\Response(response="200", description="Пароль изменен."),
+     * @OA\Response(response="404", description="Токен или email не найден."),
+     * @OA\Response(response="422", description="Некоррректный пароль или пароль совпадает со старым паролем."),
+     * )
+     * @param                       UpdatePasswordRequests $request
+     * @param                       UserRepository         $userRepository
+     * @param                       LoginService           $loginService
+     * @return                      \Illuminate\Http\JsonResponse
      */
-    public function reset(Request $request)
+    public function reset(UpdatePasswordRequests $request, UserRepository $userRepository, LoginService $loginService)
     {
-        $validator = Validator::make($request->all(), [
-            'email'    => 'required|string|email',
-            'password' => 'required|string|confirmed',
-            'token'    => 'required|string',
-        ], [], $this->attributes());
-        if ($validator->fails()) {
-            throw new StoreResourceFailedException("Validation Error",
-                $validator->errors());
+        $passwordReset = $this->passwordResetService->hasPasswordResetQueryFromUser($request->token, $request->email);
+        if (!$passwordReset) {
+            return response()->json(
+                [
+                    'message' => trans('passwords.token'),
+                ],
+                404
+            );
         }
-        $passwordReset = PasswordReset::where([
-            ['token', $request->token],
-            ['email', $request->email],
-        ])->first();
-        if ( ! $passwordReset) {
-            return response()->json([
-                'message' => trans('passwords.token'),
-            ], 404);
+        if (!$user = $userRepository->getByEmail($request->email)) {
+            return response()->json(
+                [
+                    'message' => trans('passwords.email_not_found'),
+                ],
+                404
+            );
         }
-        $user = User::where('email', $passwordReset->email)->first();
-        if ( ! $user) {
-            return response()->json([
-                'message' => trans('passwords.email_not_found'),
-            ], 404);
+        if ($loginService->comparePassword($user, $request->password)) {
+            return response()->json(
+                [
+                    'message' => trans('passwords.not_match'),
+                ],
+                422
+            );
         }
-
-        if ($user && Hash::check($request->password, $user->password)) {
-            return response()->json([
-                'message' => trans('passwords.not_match'),
-            ], 403);
+        if ($this->passwordResetRepository->resetPassword($user, $passwordReset, $request->password)) {
+            $user->notify(new PasswordResetSuccess());
         }
-
-        $user->password = bcrypt($request->password);
-        $user->save();
-        $passwordReset->delete();
-        $user->notify(new PasswordResetSuccess($passwordReset));
-
         return response()->json($user);
     }
 
-    public function attributes()
-    {
-        return [
-            'password' => 'пароль',
-            'token'    => 'токен',
-        ];
-    }
 }

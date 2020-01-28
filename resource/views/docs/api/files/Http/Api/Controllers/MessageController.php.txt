@@ -1,0 +1,80 @@
+<?php
+
+namespace App\Http\Api\Controllers;
+
+use App\Events\ChatMessage;
+use App\Http\Controllers\BaseController;
+use App\Http\Requests\StoreConversationMessage;
+use Illuminate\Http\Request;
+use Nahid\Talk\Facades\Talk;
+use Auth;
+use Dingo\Api\Routing\Helpers;
+
+class MessageController extends BaseController
+{
+    use Helpers;
+    protected $authUser;
+
+    public function __construct()
+    {
+        $this->middleware('api.auth');
+        $this->middleware(function ($request, $next) {
+            Talk::setAuthUserId(Auth::user()->id);
+            return $next($request);
+        });
+    }
+
+    public function chatHistory($id, $offset = 0)
+    {
+        $conversations = Talk::getMessagesByUserId($id, $offset, 10);
+        if (!$conversations->messages) {
+            return response()->json([
+                [
+                    'message' => trans('messages.message.not_found_messages')
+                ]
+            ], 404);
+        }
+
+        if (count($conversations->messages) > 0) {
+            $conversations->messages = $conversations->messages->sortBy('id');
+        }
+        return response()->json($conversations->messages);
+    }
+
+    public function sendMessage(StoreConversationMessage $request)
+    {
+        $request->validated();
+        if ($message = Talk::sendMessageByUserId($request->id, $request->message)) {
+            broadcast(new ChatMessage($message))->toOthers();
+            return response([
+                'message' => trans('messages.message.send')
+            ], 201);
+        }
+        return response([
+            'message' => trans('messages.message.not_fount')
+        ], 404);
+    }
+
+    public function deleteMessage(Request $request, $id)
+    {
+        if (Talk::deleteMessage($id)) {
+            return response([
+                'message' => trans('messages.message.delete')
+            ], 200);
+        }
+        return response([
+            'message' => trans('messages.message.not_fount')
+        ], 404);
+    }
+
+
+    public function getInbox()
+    {
+
+    }
+
+    public function tests()
+    {
+        dd(Talk::channel());
+    }
+}

@@ -1,0 +1,94 @@
+<?php
+
+namespace App\Http\Api\Controllers;
+
+use App\Http\Controllers\BaseController;
+use App\Models\Friend;
+use App\Models\User;
+use App\Repositories\FriendRepository;
+use App\Repositories\UserRepository;
+use Dingo\Api\Routing\Helpers;
+use Illuminate\Support\Facades\Auth;
+
+class FriendController extends BaseController
+{
+    use Helpers;
+
+
+    protected $friendRepository;
+
+    public function __construct(FriendRepository $friendRepository)
+    {
+        parent::__construct();
+        $this->middleware('api.auth');
+        $this->friendRepository = $friendRepository;
+    }
+    /**
+     * Remove a group
+     *
+     * @param UserRepository $userRepository Required
+     * @return mixed JSON array with remaining groups
+     */
+    public function add(UserRepository $userRepository, int $idUser)
+    {
+        if ($idUser == $this->auth->user()->id) {
+            return response([
+                'message' => trans('messages.friends.by_myself')
+            ], 422);
+        }
+
+        $user = $userRepository->getById($idUser);
+
+        if (!$user) {
+            return response([
+                'message' => trans('messages.friends.not_found')
+            ], 404);
+        }
+
+        if ($this->friendRepository->getById($idUser)) {
+            return response([
+                'message' => trans('messages.friends.already_exists', ['name' => $user->name])
+            ], 422);
+        }
+
+        if ($this->friendRepository->create(Auth::id(), $idUser)) {
+            return response([
+                'message' => trans('messages.friends.add_success',
+                    [
+                        'id' => $user->id,
+                        'name' => $user->name
+                    ]
+                )
+            ], 201);
+        }
+
+    }
+
+    public function getFriends()
+    {
+        $friends = $this->friendRepository->getFriends(Auth::id());
+
+        if ($friends) {
+            return response($friends);
+        } else {
+            return response([
+                'message' => trans('messages.friends.friends_not_found')
+            ]);
+        }
+    }
+
+    public function deleteFriend(int $friendId)
+    {
+        $friend = $this->friendRepository->getFriend(Auth::id(), $friendId);
+        if ($this->friendRepository->deleteFriend($friend)) {
+            return response([
+                'messages' => trans('messages.friends.deleted', ['name' => $friend->name])
+            ], 200);
+        }
+
+        return response([
+            'messages' => trans('messages.friends.not_found')
+        ], 404);
+    }
+
+}

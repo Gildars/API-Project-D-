@@ -47,8 +47,10 @@ class MailConfirmationRequest extends Notification implements ShouldQueue
 
         return (new MailMessage)
             ->line(trans('notifications.mail_confirmation_request.info'))
-            ->action(trans('notifications.mail_confirmation_request.btn_confirm'),
-                url($url))
+            ->action(
+                trans('notifications.mail_confirmation_request.btn_confirm'),
+                url($url)
+            )
             ->line(trans('notifications.mail_confirmation_request.msg_not_confirm'));
     }
 

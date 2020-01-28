@@ -18,7 +18,7 @@ class Localization
     {
         // Check header request and determine localizaton
         $local = ($request->hasHeader('X-localization'))
-            ? $request->header('X-localization') : 'en';
+            ? $request->header('X-localization') : 'ru';
         // set laravel localization
         app()->setLocale($local);
 

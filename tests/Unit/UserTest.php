@@ -2,41 +2,52 @@
 
 namespace Tests\Unit;
 
-use App\MailConfirmation;
+use App\Models\MailConfirmation;
+use App\Models\User;
 use Tests\TestCase;
 
 class UserTest extends TestCase
 {
+    public function test_condition_preparation()
+    {
+        $login = $this->loginWithFakeUser();
+
+        $mailConfirmation = MailConfirmation::query()->where('email',
+            'test1@gmail.com')->first();
+        if ($mailConfirmation) {
+            $mailConfirmation->delete();
+        }
+
+        $user = User::query()->where('id', '=', $login['data']['user']['id'])->first();
+        $user->email_verified_at = null;
+        $user->update();
+
+    }
+
     public function test_create_a_request_to_confirm_mail()
     {
-        $this->get('user/mailConfirmCreate', [
-            'headers' => [
-                'Content-Type' => 'application/json',
+        $login = $this->loginWithFakeUser();
+
+        $this->post('users/mailConfirmCreate',
+            [
+                'email' => 'test1@gmail.com',
             ],
-        ])->assertJsonStructure([
+            [
+                'headers' => $login['headers']
+                ,
+            ])->assertJsonStructure([
             'message',
-        ]);
+        ])->assertStatus(200);
     }
 
     public function test_confirm_mail_by_clicking_on_the_link_from_the_letter()
     {
-        $mailConfirmation = MailConfirmation::where('email',
-            'test@gmail.com')->first();
-        $user             = $this->post('/login', [
-            'email'    => 'test@gmail.com',
-            'password' => 'Catharsiscur19',
-        ])->assertJsonStructure([
-            'token',
-            'status_code',
-            'message',
-        ])->assertStatus(200);
 
-        $user = json_decode($user->getContent());
-        $this->get("user/mailConfirm/{$mailConfirmation->token}", [
-            "Authorization" => 'Bearer ' . $user->token,
-        ])
-             ->assertJsonStructure([
-                 'message',
-             ])->assertStatus(200);
+        $mailConfirmation = MailConfirmation::where('email',
+            'test1@gmail.com')->first();
+        $user = $this->loginWithFakeUser();
+        $this->post("users/mailConfirm/{$mailConfirmation->token}", [
+            "Authorization" => 'Bearer ' . $user['token'],
+        ])->assertStatus(200);
     }
 }
