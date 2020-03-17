@@ -3,8 +3,7 @@
 namespace App\Http\Api\Controllers;
 
 use App\Http\Controllers\BaseController;
-use App\Models\Friend;
-use App\Models\User;
+use App\Http\Requests\Friend\StoreFriendRequest;
 use App\Repositories\FriendRepository;
 use App\Repositories\UserRepository;
 use Dingo\Api\Routing\Helpers;
@@ -43,10 +42,21 @@ class FriendController extends BaseController
      * @OA\Response(response="404", description="Игрок не найден."),
      *
      * )
+     * @param UserRepository $userRepository
+     * @param StoreFriendRequest $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
-    public function add(UserRepository $userRepository, int $idUser)
+    public function add(UserRepository $userRepository, StoreFriendRequest $request, string $name)
     {
-        if ($idUser == $this->auth->user()->id) {
+        if ($this->friendRepository->getCountFriends($this->auth->user()->id) >= config('game.communicator.max_friends')) {
+            return response(
+                [
+                    'message' =>  trans('messages.friends.max_friends')
+                ], 422
+            );
+        }
+
+        if ($request->name == $this->auth->user()->name) {
             return response(
                 [
                 'message' => trans('messages.friends.by_myself')
@@ -54,7 +64,7 @@ class FriendController extends BaseController
             );
         }
 
-        $user = $userRepository->getById($idUser);
+        $user = $userRepository->getByName($name);
 
         if (!$user) {
             return response(
@@ -64,7 +74,7 @@ class FriendController extends BaseController
             );
         }
 
-        if ($this->friendRepository->getById($idUser)) {
+        if ($this->friendRepository->getById($user->id)) {
             return response(
                 [
                 'message' => trans('messages.friends.already_exists', ['name' => $user->name])
@@ -72,7 +82,7 @@ class FriendController extends BaseController
             );
         }
 
-        if ($this->friendRepository->create(Auth::id(), $idUser)) {
+        if ($this->friendRepository->create(Auth::id(), $user->id)) {
             return response(
                 [
                 'message' => trans(
@@ -108,7 +118,6 @@ class FriendController extends BaseController
             'message' => trans('messages.friends.friends_not_found')
             ], 404
         );
-
     }
 
     /**
@@ -132,18 +141,17 @@ class FriendController extends BaseController
     public function deleteFriend(int $friendId)
     {
         $friend = $this->friendRepository->getFriend(Auth::id(), $friendId);
-
         if ($friend && $this->friendRepository->deleteFriend($friend)) {
             return response(
                 [
-                'messages' => trans('messages.friends.deleted', ['name' => $friend->name])
+                'message' => trans('messages.friends.deleted', ['name' => $friend->name])
                 ], 200
             );
         }
 
         return response(
             [
-            'messages' => trans('messages.friends.not_found')
+            'message' => trans('messages.friends.not_found')
             ], 404
         );
     }

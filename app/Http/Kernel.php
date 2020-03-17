@@ -68,6 +68,8 @@ class Kernel extends HttpKernel
             'localization' => \App\Http\Middleware\Localization::class,
             'LastActivityUser' => \App\Http\Middleware\LastActivityUser::class,
             'talk' => \Nahid\Talk\Middleware\TalkMiddleware::class,
+            'jwt.auth' => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
+            'jwt.refresh' => \Tymon\JWTAuth\Middleware\RefreshToken::class,
         ];
 
     /**

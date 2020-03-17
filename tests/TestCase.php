@@ -16,7 +16,7 @@ abstract class TestCase extends BaseTestCase
             'password' => 'Catharsis',
         ])->assertJsonStructure(['message'])
             ->assertStatus(200);
-        $token = ($request->baseResponse->original['token']);
+        $token = ($request->baseResponse->original['access_token']);
         $headers = [
             'Authorization' => "Bearer $token",
             'Content-Type' => 'application/json'

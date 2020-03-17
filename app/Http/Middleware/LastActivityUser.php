@@ -31,17 +31,30 @@ class LastActivityUser
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \Closure                 $next
+     * @param  \Closure $next
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
-        if ($this->auth->check() && $this->auth->user()->last_activity < Carbon::now()->subMinutes(5)->format('Y-m-d H:i:s')) {
+        if ($this->checkTimeLastActivity()) {
             $user = $this->auth->user();
             $user->last_activity = new \DateTime;
             $user->timestamps = false;
             $user->save();
         }
         return $next($request);
+    }
+
+    public function checkTimeLastActivity()
+    {
+        if ($this->auth->check()) {
+            if ($this->auth->user()->last_activity === null) {
+                return true;
+            }
+            if ($this->auth->user()->last_activity < Carbon::now()->subMinutes(5)->format('Y-m-d H:i:s')) {
+                return true;
+            }
+        }
+        return false;
     }
 }

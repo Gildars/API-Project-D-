@@ -4,6 +4,8 @@ namespace App\Repositories;
 
 use App\Models\Friend;
 use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class FriendRepository
@@ -26,7 +28,7 @@ class FriendRepository extends BaseRepository
      * FriendRepository constructor.
      *
      * @param Friend $friend
-     * @param User   $user
+     * @param User $user
      */
     public function __construct(Friend $friend, User $user)
     {
@@ -40,9 +42,20 @@ class FriendRepository extends BaseRepository
      */
     public function getById($id)
     {
+        $authId = Auth::id();
         return $this->model
-            ->where('id_friend_one', '=', $id)
-            ->orWhere('id_friend_two', '=', $id)
+            ->where(
+                function ($query) use ($id, $authId) {
+                    $query->where('friends.id_friend_one', '=', $id)
+                        ->where('friends.id_friend_two', '=', $authId);
+                }
+            )
+                ->orWhere(
+                    function ($query) use ($id, $authId) {
+                        $query->where('friends.id_friend_one', '=', $authId)
+                            ->where('friends.id_friend_two', '=', $id);
+                    }
+                )
             ->first();
     }
 
@@ -66,29 +79,45 @@ class FriendRepository extends BaseRepository
      */
     public function getFriends(int $id)
     {
-        $friends = $this->user
-            ->join(
-                'friends',
-                function ($join) {
-                    $join->on('friends.id_friend_one', '=', 'users.id')
-                        ->orOn('friends.id_friend_two', '=', 'users.id');
+        $friends = $this->user->rightJoin(
+            'friends',
+            function ($join) {
+                $join->on('friends.id_friend_one', '=', 'users.id')
+                    ->orOn('friends.id_friend_two', '=', 'users.id');
+            }
+        )
+            ->where(
+                function ($query) use ($id) {
+                    $query->where('friends.id_friend_one', '=', $id)
+                        ->whereRaw('friends.id_friend_two = users.id');
                 }
             )
-            ->where('users.id', '!=', $id)
             ->orWhere(
-                function ($query) {
-                    $query->where('users.id', '=', 'friends.id_friend_one')
-                        ->orWhere('users.id', '=', 'friends.id_friend_two');
+                function ($query) use ($id) {
+                    $query->whereRaw('friends.id_friend_one = users.id')
+                        ->where('friends.id_friend_two', '=', $id);
                 }
             )
             ->orderBy('isOnline', 'DESC')
-            ->get(['users.id', 'users.name', 'users.last_activity AS isOnline']);
-
-        foreach ($friends as $friend) {
-            $friend->isOnline = $friend->isOnline('isOnline');
+            ->get(['users.id', 'users.lvl', 'users.name', 'users.last_activity AS isOnline']);
+        if (!$friends->isEmpty()) {
+            foreach ($friends as $friend) {
+                $friend->isOnline = $friend->isOnline('isOnline');
+            }
+            return $friends;
+        } else {
+            return false;
         }
+    }
 
-        return $friends;
+    /**
+     * @param int $id
+     * @return mixed
+     */
+    public function getCountFriends(int $id){
+        $friends = $this->model->where('friends.id_friend_one', '=', $id)
+            ->where('friends.id_friend_one', '=', $id)->get(['id']);
+        return $friends->count();
     }
 
     /**

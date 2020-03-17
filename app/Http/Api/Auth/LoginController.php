@@ -9,7 +9,9 @@ use App\Services\Auth\LoginService;
 use Dingo\Api\Routing\Helpers;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
+use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
 /**
  * Class LoginController
@@ -26,9 +28,6 @@ class LoginController extends BaseController
      */
     protected $userRepository;
 
-    /**
-     * @var LoginService
-     */
     protected $loginService;
 
     /**
@@ -76,18 +75,48 @@ class LoginController extends BaseController
     {
         if ($token = $this->loginService->authorization($request, $this->userRepository)) {
             $this->clearLoginAttempts($request);
-            return response()->json(
-                [
-                    'token' => $token,
-                    'message' => 'User Authenticated',
-                ],
-                200
-            );
+            return $this->respondWithToken($token);
         }
-        /*throw new UnauthorizedHttpException(
-            "Bad Credentials",
-            trans('validation.custom.login.bad_credentials')
-        );*/
+        return response()->json(
+            [
+                'message' => trans('validation.custom.login.bad_credentials')
+            ],
+            422
+        );
+    }
+
+    /**
+     * @OA\Post(
+     *     path="/refresh",
+     *     description="Обновление токена доступа.",
+     *     tags={"auth"},
+     *
+     * @OA\Response(response="200", description="Токен обновлен."),
+     *
+     * )
+     * @param                       UserRequests $request
+     * @return                      \Illuminate\Http\JsonResponse
+     */
+    public function refresh()
+    {
+        return $this->respondWithToken(auth()->refresh());
+    }
+
+    /**
+     * Get the token array structure.
+     *
+     * @param  string $token
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function respondWithToken($token)
+    {
+        return response()->json([
+            'message' => 'User Authenticated',
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => Carbon::now('UTC')->addMinutes(auth()->factory()->getTTL())->timestamp
+        ],200);
     }
 
     /**

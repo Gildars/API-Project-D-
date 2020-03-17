@@ -24,11 +24,12 @@ $api->version('v1', function ($api) {
 
         $api->post('/login', 'App\Http\Api\Auth\LoginController@login');
         $api->post('/register', 'App\Http\Api\Auth\RegisterController@register');
+        $api->post('/refresh', 'App\Http\Api\Auth\LoginController@refresh');
 
         $api->group([
             'middleware' => [
                 'api',
-                'api.auth',
+                'jwt.refresh',
                 'LastActivityUser'
             ],
         ], function ($api) {
@@ -53,7 +54,8 @@ $api->version('v1', function ($api) {
             $api->group([
                 'prefix' => 'friends'
             ], function ($api) {
-                $api->post('/{id}', 'App\Http\Api\Controllers\FriendController@add')->where(['id' => '[0-9]+']);
+                $api->post('/{name}', 'App\Http\Api\Controllers\FriendController@add')
+                    ->where(['name' => '[а-яА-ЯёЁa-zA-Z0-9]+']);
                 $api->get('/', 'App\Http\Api\Controllers\FriendController@getFriends');
                 $api->delete(
                     '/{id}',

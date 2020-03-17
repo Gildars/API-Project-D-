@@ -58,6 +58,10 @@ class UserRepository extends BaseRepository
     }
 
 
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function create(Request $request)
     {
         $user = new $this->model;
@@ -67,6 +71,17 @@ class UserRepository extends BaseRepository
         $user->gender = $request->gender;
         $user->classId = $request->class;
         $user->save();
+        return $user;
+    }
+
+
+    /**
+     * @param string $name
+     * @return mixed
+     */
+    public function getByName(string $name)
+    {
+        $user = $this->model->where('name', $name)->first();
         return $user;
     }
 }
