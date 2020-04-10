@@ -48,6 +48,20 @@
                 }
             }
         },
+        "/refresh": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "description": "Обновление токена доступа.",
+                "operationId": "App\\Http\\Api\\Auth\\LoginController::refresh",
+                "responses": {
+                    "200": {
+                        "description": "Токен обновлен."
+                    }
+                }
+            }
+        },
         "/logout": {
             "post": {
                 "tags": [
@@ -423,6 +437,41 @@
                     },
                     "422": {
                         "description": "Не удалось удалить сообщение."
+                    }
+                }
+            }
+        },
+        "/stat/": {
+            "get": {
+                "tags": [
+                    "stat"
+                ],
+                "description": "Возвращает характеристики персонажа.",
+                "operationId": "App\\Http\\Api\\Controllers\\StatController::getStats",
+                "responses": {
+                    "200": {
+                        "description": "Характеристики персонажа."
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "stat"
+                ],
+                "description": "Увеличивает характеристики персонажа.",
+                "operationId": "App\\Http\\Api\\Controllers\\StatController::increaseStats",
+                "responses": {
+                    "200": {
+                        "description": "Характеристики персонажа увеличены."
+                    },
+                    "422": {
+                        "description": "Переданы некоректные значения характеристик."
+                    },
+                    "401": {
+                        "description": "Unauthorized."
                     }
                 }
             }

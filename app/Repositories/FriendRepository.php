@@ -77,7 +77,7 @@ class FriendRepository extends BaseRepository
      * @param  int $id
      * @return mixed
      */
-    public function getFriends(int $id)
+    public function getFriends(int $id, int $skip)
     {
         $friends = $this->user->rightJoin(
             'friends',
@@ -99,6 +99,8 @@ class FriendRepository extends BaseRepository
                 }
             )
             ->orderBy('isOnline', 'DESC')
+            ->skip($skip)
+            ->take(15)
             ->get(['users.id', 'users.lvl', 'users.name', 'users.last_activity AS isOnline']);
         if (!$friends->isEmpty()) {
             foreach ($friends as $friend) {

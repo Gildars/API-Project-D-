@@ -18,7 +18,7 @@ class FriendTest extends TestCase
             $friendRepository->deleteFriend($friends);
         }
 
-        $this->post('/friends/2', [], $login['headers'])
+        $this->post('/friends/TestTwo', [], $login['headers'])
             ->assertJsonStructure(['message'])
             ->assertStatus(201);
     }
@@ -27,7 +27,7 @@ class FriendTest extends TestCase
     {
         $login = $this->loginWithFakeUser();
 
-        $this->get('/friends', $login['headers'])
+        $this->get('/friends/', $login['headers'])
             ->assertStatus(200);
     }
 

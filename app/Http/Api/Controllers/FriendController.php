@@ -107,9 +107,9 @@ class FriendController extends BaseController
      * @OA\Response(response="404", description="Список друзей пуст."),
      * )
      */
-    public function getFriends()
+    public function getFriends($skip = 15)
     {
-        $friends = $this->friendRepository->getFriends(Auth::id());
+        $friends = $this->friendRepository->getFriends(Auth::id(), $skip);
         if ($friends) {
             return response($friends, 200);
         }

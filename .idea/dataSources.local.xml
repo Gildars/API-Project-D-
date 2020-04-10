@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="elonica@localhost" uuid="a083a247-8095-44d9-96da-7c55788677a0">
-      <database-info product="MariaDB" version="10.3.13-MariaDB" jdbc-version="4.2" driver-name="MariaDB Connector/J" driver-version="2.4.1" dbms="MARIADB" exact-version="10.3.13">
+    <data-source name="MariaDB - elonica@localhost" uuid="a083a247-8095-44d9-96da-7c55788677a0">
+      <database-info product="MySQL" version="5.7.29-log" jdbc-version="4.2" driver-name="MariaDB Connector/J" driver-version="2.4.1" dbms="MYSQL" exact-version="5.7.29">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <introspection-schemas>*:@</introspection-schemas>
+    </data-source>
+    <data-source name="MySQL for 5.1 - elonica@localhost" uuid="89b3e08f-6160-461a-897e-5707a5541d60">
+      <database-info product="MySQL" version="5.7.29-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.47 ( Revision: fe1903b1ecb4a96a917f7ed3190d80c049b1de29 )" dbms="MYSQL" exact-version="5.7.29" exact-driver-version="5.1">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
       </database-info>

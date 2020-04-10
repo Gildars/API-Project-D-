@@ -26,7 +26,16 @@ class CreateUsersTable extends Migration
                 $table->rememberToken();
                 $table->dateTime('last_activity')->nullable();
                 $table->timestamps();
-            }
+                $table->smallInteger('stat_points')->default(0);
+                $table->unsignedSmallInteger("str")->default("15");
+                $table->unsignedSmallInteger("dex")->default("15");
+                $table->unsignedSmallInteger("sta")->default("15");
+                $table->unsignedSmallInteger("int")->default("15");
+                $table->unsignedSmallInteger("attack")->default("1");
+                $table->unsignedSmallInteger("critical_chance")->default("1");
+                $table->unsignedSmallInteger("defense")->default("1");
+                $table->unsignedSmallInteger("block")->default("0");
+        }
         );
     }
 
