@@ -56,7 +56,8 @@ $api->version('v1', function ($api) {
             ], function ($api) {
                 $api->post('/{name}', 'App\Http\Api\Controllers\FriendController@add')
                     ->where(['name' => '[а-яА-ЯёЁa-zA-Z0-9]+']);
-                $api->get('/', 'App\Http\Api\Controllers\FriendController@getFriends');
+                $api->get('/{skip?}', 'App\Http\Api\Controllers\FriendController@getFriends')
+                    ->where(['skip' => '[0-9]{2}+']);
                 $api->delete(
                     '/{id}',
                     'App\Http\Api\Controllers\FriendController@deleteFriend'
@@ -95,6 +96,12 @@ $api->version('v1', function ($api) {
                 )->where([
                     'id' => '[0-9]+',
                 ]);
+            });
+            $api->group([
+               'prefix' => 'stats'
+            ], function ($api) {
+                $api->get('/', 'App\Http\Api\Controllers\StatController@getStats');
+                $api->post('/', 'App\Http\Api\Controllers\StatController@increaseStats');
             });
         });
     });

@@ -444,54 +444,37 @@
                 }
             }
         },
-        "/threads": {
+        "/stat/": {
             "get": {
                 "tags": [
-                    "threads"
+                    "stat"
                 ],
-                "description": "Возвращает список диалогов.",
-                "parameters": [
-                    {
-                        "name": "skip",
-                        "in": "path",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int32"
-                        }
-                    }
-                ],
+                "description": "Возвращает характеристики персонажа.",
+                "operationId": "App\\Http\\Api\\Controllers\\StatController::getStats",
                 "responses": {
                     "200": {
-                        "description": "Список диалогов."
+                        "description": "Характеристики персонажа."
                     },
-                    "404": {
-                        "description": "Диалоги не найдены."
+                    "401": {
+                        "description": "Unauthorized."
                     }
                 }
             },
-            "delete": {
+            "post": {
                 "tags": [
-                    "threads"
+                    "stat"
                 ],
-                "description": "Удаляет диалог.",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int32"
-                        }
-                    }
-                ],
+                "description": "Увеличивает характеристики персонажа.",
+                "operationId": "App\\Http\\Api\\Controllers\\StatController::increaseStats",
                 "responses": {
                     "200": {
-                        "description": "Диалог успешно удален."
+                        "description": "Характеристики персонажа увеличены."
                     },
-                    "404": {
-                        "description": "Диалог не найден."
+                    "422": {
+                        "description": "Переданы некоректные значения характеристик."
+                    },
+                    "401": {
+                        "description": "Unauthorized."
                     }
                 }
             }

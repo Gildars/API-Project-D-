@@ -1,7 +1,11 @@
 <?php
 
-return array(
-    'communicator' => array(
-        'max_friends' => 50
-    ),
-);
+return [
+    'communicator' => [
+        'max_friends' => 2
+        ,
+    ],
+    'user' => [
+        'stats_point_per_level' => 10
+    ],
+];
