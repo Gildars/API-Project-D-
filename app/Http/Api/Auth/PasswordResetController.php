@@ -4,7 +4,7 @@ namespace App\Http\Api\Auth;
 
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\Auth\StorePasswordResetRequest;
-use App\Http\Requests\Auth\UpdatePasswordRequests;
+use App\Http\Requests\Auth\UpdatePasswordRequest;
 use App\Repositories\PasswordResetRepository;
 use App\Repositories\UserRepository;
 use App\Services\Auth\LoginService;
@@ -170,12 +170,12 @@ class PasswordResetController extends BaseController
      * @OA\Response(response="404", description="Токен или email не найден."),
      * @OA\Response(response="422", description="Некоррректный пароль или пароль совпадает со старым паролем."),
      * )
-     * @param                       UpdatePasswordRequests $request
+     * @param                       UpdatePasswordRequest $request
      * @param                       UserRepository         $userRepository
      * @param                       LoginService           $loginService
      * @return                      \Illuminate\Http\JsonResponse
      */
-    public function reset(UpdatePasswordRequests $request, UserRepository $userRepository, LoginService $loginService)
+    public function reset(UpdatePasswordRequest $request, UserRepository $userRepository, LoginService $loginService)
     {
         $passwordReset = $this->passwordResetService->hasPasswordResetQueryFromUser($request->token, $request->email);
         if (!$passwordReset) {

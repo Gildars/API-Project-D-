@@ -1,36 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/app/Http/Api/Controllers/MessageController.php" line="135" />
+    <bookmark url="file://$PROJECT_DIR$/app/Http/Api/Controllers/MessageController.php" line="149" />
     <bookmark url="file://$PROJECT_DIR$/app/Http/Api/Controllers/FriendController.php" line="38" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74dec2e7-cf6b-4b57-b11a-ec2642844cd6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Friend/StoreFriendRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/game.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/commandlinetools/Custom_phpdoc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/commandlinetools/Custom_phpdoc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Requests/Conversation/DeleteConversationRequest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repositories/ConversationsRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/echo-server.bat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/d5469388-5db8-49d6-b5a2-8ab43a7a0da5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/laravel.local.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/laravel.local.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Api/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Api/Auth/LoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Api/Auth/PasswordResetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Api/Auth/PasswordResetController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Api/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Api/Auth/RegisterController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Api/Controllers/FriendController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Api/Controllers/FriendController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/LastActivityUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/LastActivityUser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Api/Controllers/MessageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Api/Controllers/MessageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Auth/StoreUserRequests.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Auth/StoreUserRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Auth/UpdatePasswordRequests.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Auth/UpdatePasswordRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Auth/UserRequests.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Auth/UserRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Conversation/StoreConversationMessageRequests.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Conversation/StoreConversationMessageRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/User/UpdateCharacterRequests.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/User/UpdateCharacterRequest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/BroadcastServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/BroadcastServiceProvider.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Repositories/FriendRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/FriendRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Repositories/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/UserRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Services/Auth/LoginService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Services/Auth/LoginService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/jwt.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/game.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/game.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel-echo-server.json" beforeDir="false" afterPath="$PROJECT_DIR$/laravel-echo-server.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/laravel-echo-server.lock" beforeDir="false" afterPath="$PROJECT_DIR$/laravel-echo-server.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/lang/ru/messages.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/ru/messages.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/TestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/TestCase.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/serve.bat" beforeDir="false" afterPath="$PROJECT_DIR$/serve.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/api-docs/api-docs.json" beforeDir="false" afterPath="$PROJECT_DIR$/storage/api-docs/api-docs.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -74,6 +80,13 @@
         <item name="elonica@localhost" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="elonica: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="messages: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="elonica@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="elonica: schema" type="76f4a085:MysqlImplModel$Schema" />
         <item name="users: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
     </expand>
@@ -85,10 +98,73 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="477">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/lang/ru/messages.php">
+        <entry file="file://$PROJECT_DIR$/app/Http/Api/Controllers/MessageController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="506">
-              <caret line="23" column="50" selection-start-line="23" selection-start-column="50" selection-end-line="23" selection-end-column="50" />
+            <state relative-caret-position="470">
+              <caret line="73" column="81" selection-start-line="73" selection-start-column="57" selection-end-line="73" selection-end-column="81" />
+              <folding>
+                <element signature="e#44#71#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="das://a083a247-8095-44d9-96da-7c55788677a0/schema/elonica/table/messages">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="das://a083a247-8095-44d9-96da-7c55788677a0/schema/elonica/table/conversations">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a083a247-8095-44d9-96da-7c55788677a0/console_1.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="44">
+              <caret line="2" column="95" selection-start-line="2" selection-start-column="95" selection-end-line="2" selection-end-column="95" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/nahid/talk/src/Facades/Talk.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="15" column="20" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/vendor/nahid/talk/src/Talk.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="380">
+              <caret line="273" column="67" lean-forward="true" selection-start-line="273" selection-start-column="67" selection-end-line="273" selection-end-column="67" />
+              <folding>
+                <element signature="e#176#219#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Api/Controllers/ThreadsController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1892">
+              <caret line="91" column="23" selection-start-line="91" selection-start-column="23" selection-end-line="91" selection-end-column="23" />
+              <folding>
+                <element signature="e#44#84#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -96,76 +172,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-541">
-              <caret line="53" column="25" selection-start-line="53" selection-start-column="25" selection-end-line="53" selection-end-column="25" />
+            <state relative-caret-position="1496">
+              <caret line="68" column="40" selection-start-line="68" selection-start-column="40" selection-end-line="68" selection-end-column="40" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/auth.php">
+        <entry file="file://$PROJECT_DIR$/app/Repositories/ConversationsRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="582">
-              <caret line="44" column="30" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
+            <state relative-caret-position="52">
+              <caret line="57" column="20" selection-start-line="57" selection-start-column="20" selection-end-line="57" selection-end-column="20" />
+              <folding>
+                <element signature="e#36#58#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/composer.lock">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/config/database.php">
+        <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2697">
-              <caret line="11" column="75" lean-forward="true" selection-start-line="11" selection-start-column="75" selection-end-line="11" selection-end-column="75" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/TestCase.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="19" selection-start-line="19" selection-end-line="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Api/Auth/LoginController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1056">
-              <caret line="117" column="98" selection-start-line="117" selection-start-column="98" selection-end-line="117" selection-end-column="98" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Requests/Auth/UpdatePasswordRequests.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Requests/Auth/UserRequests.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="550">
-              <caret line="26" column="6" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Requests/Conversation/StoreConversationMessageRequests.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+            <state relative-caret-position="10076">
+              <caret line="471" column="27" selection-start-line="471" selection-start-column="27" selection-end-line="471" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -174,13 +203,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>auth</find>
-      <find>config</find>
-      <find>muson</find>
-      <find>create</find>
-      <find>messages</find>
-      <find>Musonza\Chat\ChatServiceProvider::class</find>
-      <find>users</find>
       <find>App\Providers\BroadcastServiceProvider</find>
       <find>Illuminate\Broadcasting\BroadcastServiceProvider::class,</find>
       <find>predis</find>
@@ -204,6 +226,13 @@
       <find>jwt-auth</find>
       <find>Tymon\JWTAuth\Facades\JWTAuth</find>
       <find>Tymon\JWTAuth\Facades\JWTFactory</find>
+      <find>conversations</find>
+      <find>getInbox</find>
+      <find>i</find>
+      <find>getIn</find>
+      <find>all</find>
+      <find>getMessagesByUserId</find>
+      <find>getConversationsById</find>
     </findStrings>
     <replaceStrings>
       <replace>message</replace>
@@ -217,26 +246,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/tests/Unit/FriendTest.php" />
-        <option value="$PROJECT_DIR$/tests/Unit/UserTest.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
-        <option value="$PROJECT_DIR$/resources/lang/ru/validation.php" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/Auth/StorePasswordResetRequest.php" />
-        <option value="$PROJECT_DIR$/composer.json" />
-        <option value="$PROJECT_DIR$/app/Repositories/BaseRepository.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/MailConfirmationRepository.php" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/Auth/UserRequests.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/PasswordResetRepository.php" />
-        <option value="$PROJECT_DIR$/app/Services/Auth/PasswordResetService.php" />
-        <option value="$PROJECT_DIR$/app/Http/Api/Auth/PasswordResetController.php" />
-        <option value="$PROJECT_DIR$/tests/Unit/PasswordResetTest.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2015_10_05_110608_create_messages_table.php" />
-        <option value="$PROJECT_DIR$/resources/js/app.js" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/Conversation/StoreConversationMessageRequests.php" />
-        <option value="$PROJECT_DIR$/resources/js/components/ChatBox.vue" />
         <option value="$PROJECT_DIR$/resources/js/bootstrap.js" />
         <option value="$PROJECT_DIR$/fix.bat" />
-        <option value="$PROJECT_DIR$/app/Http/Api/Controllers/MessageController.php" />
         <option value="$PROJECT_DIR$/app/Http/Api/Controllers/UserController.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/Localization.php" />
         <option value="$PROJECT_DIR$/config/cors.php" />
@@ -248,26 +259,44 @@
         <option value="$PROJECT_DIR$/database/migrations/2019_09_04_131256_create_character_classes_table.php" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/LastActivityUser.php" />
         <option value="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
-        <option value="$PROJECT_DIR$/app/Models/User.php" />
         <option value="$PROJECT_DIR$/tests/Unit/LoginTest.php" />
-        <option value="$PROJECT_DIR$/app/Services/Auth/LoginService.php" />
         <option value="$PROJECT_DIR$/app/Http/Kernel.php" />
         <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/config/auth.php" />
         <option value="$PROJECT_DIR$/config/jwt.php" />
-        <option value="$PROJECT_DIR$/app/Http/Api/Auth/LoginController.php" />
         <option value="$PROJECT_DIR$/tests/TestCase.php" />
         <option value="$PROJECT_DIR$/config/database.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/UserRepository.php" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
         <option value="$PROJECT_DIR$/app/Http/Requests/Friend/StorePasswordResetRequest.php" />
-        <option value="$PROJECT_DIR$/.env" />
-        <option value="$PROJECT_DIR$/routes/api.php" />
         <option value="$PROJECT_DIR$/app/Http/Requests/Friend/StoreFriendRequest.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/FriendRepository.php" />
+        <option value="$PROJECT_DIR$/.env.example" />
         <option value="$PROJECT_DIR$/config/game.php" />
         <option value="$PROJECT_DIR$/app/Http/Api/Controllers/FriendController.php" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
+        <option value="$PROJECT_DIR$/echo-server.bat" />
+        <option value="$PROJECT_DIR$/serve.bat" />
+        <option value="$PROJECT_DIR$/app/Http/Api/Controllers/ConversationsController.php" />
         <option value="$PROJECT_DIR$/resources/lang/ru/messages.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/UserRepository.php" />
+        <option value="$PROJECT_DIR$/app/Models/User.php" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell_1" />
+        <option value="$PROJECT_DIR$/app/Repositories/FriendRepository.php" />
+        <option value="$PROJECT_DIR$/app/Http/Requests/Conversation/DeleteConversationRequests.php" />
+        <option value="$PROJECT_DIR$/doc.bat" />
+        <option value="$PROJECT_DIR$/app/Http/Requests/Conversation/StoreConversationMessageRequest.php" />
+        <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/app/Http/Api/Controllers/ThreadsController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Requests/Conversation/DeleteConversationRequest.php" />
+        <option value="$PROJECT_DIR$/routes/channels.php" />
+        <option value="$PROJECT_DIR$/app/Providers/BroadcastServiceProvider.php" />
+        <option value="$PROJECT_DIR$/app/Services/Auth/LoginService.php" />
+        <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/app/Http/Api/Auth/LoginController.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/MessageRepository.php" />
+        <option value="$PROJECT_DIR$/vendor/nahid/talk/src/Conversations/ConversationRepository.php" />
+        <option value="$PROJECT_DIR$/routes/api.php" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/a083a247-8095-44d9-96da-7c55788677a0/console_1.sql" />
+        <option value="$PROJECT_DIR$/app/Repositories/ConversationsRepository.php" />
+        <option value="$PROJECT_DIR$/app/Http/Api/Controllers/MessageController.php" />
       </list>
     </option>
   </component>
@@ -397,7 +426,7 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
+    <option name="x" value="542" />
     <option name="y" value="-8" />
     <option name="width" value="683" />
     <option name="height" value="543" />
@@ -411,7 +440,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -423,6 +451,18 @@
               <item name="api.elonica.local" type="b2602c69:ProjectViewProjectNode" />
               <item name="api.elonica.local" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="api.elonica.local" type="b2602c69:ProjectViewProjectNode" />
+              <item name="api.elonica.local" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Broadcasting" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="api.elonica.local" type="b2602c69:ProjectViewProjectNode" />
+              <item name="api.elonica.local" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Events" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="api.elonica.local" type="b2602c69:ProjectViewProjectNode" />
@@ -516,6 +556,12 @@
               <item name="api.elonica.local" type="b2602c69:ProjectViewProjectNode" />
               <item name="api.elonica.local" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Providers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="api.elonica.local" type="b2602c69:ProjectViewProjectNode" />
+              <item name="api.elonica.local" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Repositories" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -556,7 +602,31 @@
             <path>
               <item name="api.elonica.local" type="b2602c69:ProjectViewProjectNode" />
               <item name="api.elonica.local" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="api.elonica.local" type="b2602c69:ProjectViewProjectNode" />
+              <item name="api.elonica.local" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="api.elonica.local" type="b2602c69:ProjectViewProjectNode" />
+              <item name="api.elonica.local" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="api.elonica.local" type="b2602c69:ProjectViewProjectNode" />
+              <item name="api.elonica.local" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="api.elonica.local" type="b2602c69:ProjectViewProjectNode" />
+              <item name="api.elonica.local" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="api.elonica.local" type="b2602c69:ProjectViewProjectNode" />
@@ -574,18 +644,25 @@
             <path>
               <item name="api.elonica.local" type="b2602c69:ProjectViewProjectNode" />
               <item name="api.elonica.local" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="lang" type="462c0819:PsiDirectoryNode" />
+              <item name="uk" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="api.elonica.local" type="b2602c69:ProjectViewProjectNode" />
+              <item name="api.elonica.local" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="api.elonica.local" type="b2602c69:ProjectViewProjectNode" />
+              <item name="api.elonica.local" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="api.elonica.local" type="b2602c69:ProjectViewProjectNode" />
               <item name="api.elonica.local" type="462c0819:PsiDirectoryNode" />
               <item name="storage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="api.elonica.local" type="b2602c69:ProjectViewProjectNode" />
-              <item name="api.elonica.local" type="462c0819:PsiDirectoryNode" />
-              <item name="storage" type="462c0819:PsiDirectoryNode" />
-              <item name="api-docs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="api.elonica.local" type="b2602c69:ProjectViewProjectNode" />
@@ -602,6 +679,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -619,11 +697,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\www\api.elonica.local\app\Http\Requests\Friend" />
       <recent name="E:\www\api.elonica.local\app\Repositories" />
-      <recent name="E:\www\api.elonica.local\app\Services\Auth" />
       <recent name="E:\www\api.elonica.local" />
-      <recent name="E:\www\api.elonica.local\app\Http\Requests\Auth" />
+      <recent name="E:\www\api.elonica.local\app\Http\Requests\Conversation" />
+      <recent name="E:\www\api.elonica.local\app\Http\Requests\Friend" />
+      <recent name="E:\www\api.elonica.local\app\Services\Auth" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\www\api.elonica.local\app\Repositories" />
@@ -657,13 +735,25 @@
     <configuration name="Elonica" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application" server_name="api.elonica.local">
       <method v="2" />
     </configuration>
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <list>
+      <item itemvalue="npm.dev" />
       <item itemvalue="PHP Web Page.Elonica" />
       <item itemvalue="PHPUnit.phpunit.xml" />
       <item itemvalue="PHPUnit.PasswordResetTest.test_set_the_new_password_when_the_user_not_exists" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.dev" />
         <item itemvalue="PHPUnit.PasswordResetTest.test_set_the_new_password_when_the_user_not_exists" />
       </list>
     </recent_temporary>
@@ -811,36 +901,79 @@
       <workItem from="1583510662815" duration="5785000" />
       <workItem from="1584290166263" duration="2881000" />
       <workItem from="1584475995459" duration="382000" />
+      <workItem from="1584642654153" duration="4155000" />
+      <workItem from="1584727043960" duration="2980000" />
+      <workItem from="1584804662946" duration="3959000" />
+      <workItem from="1584811860109" duration="4472000" />
+      <workItem from="1584882365580" duration="3640000" />
+      <workItem from="1585079220592" duration="601000" />
+      <workItem from="1585080072706" duration="424000" />
+      <workItem from="1585157149676" duration="7449000" />
+      <workItem from="1585245076169" duration="7597000" />
+      <workItem from="1585327492342" duration="4689000" />
+      <workItem from="1585395383672" duration="12484000" />
+      <workItem from="1585479028060" duration="1478000" />
+      <workItem from="1585590801459" duration="597000" />
+      <workItem from="1585683000031" duration="594000" />
+      <workItem from="1585761747207" duration="1622000" />
+      <workItem from="1585843375650" duration="872000" />
+      <workItem from="1585856187921" duration="5526000" />
+      <workItem from="1585935865148" duration="601000" />
+      <workItem from="1586196413308" duration="903000" />
+      <workItem from="1586276298450" duration="7314000" />
+      <workItem from="1586360200836" duration="2052000" />
+      <workItem from="1586469464467" duration="3315000" />
+      <workItem from="1586537691995" duration="5683000" />
+      <workItem from="1586605721106" duration="17934000" />
+      <workItem from="1586690917732" duration="780000" />
     </task>
+    <task id="LOCAL-00001" summary="Update .env example">
+      <created>1584727701909</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1584727701909</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="443639000" />
+    <option name="totallyTimeSpent" value="547016000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6207865" visible="true" weight="0.1684435" />
-      <window_info id="npm" order="1" sideWeight="0.503639" side_tool="true" weight="0.17643923" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.54555196" visible="true" weight="0.15085287" />
+      <window_info id="npm" order="1" sideWeight="0.454448" side_tool="true" weight="0.14605543" />
       <window_info id="Structure" order="2" sideWeight="0.37921348" side_tool="true" weight="0.16204691" />
       <window_info id="Favorites" order="3" sideWeight="0.503639" side_tool="true" weight="0.17643923" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3290461" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3290461" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.25830653" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3290461" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="8" visible="true" weight="0.3290461" />
-      <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50319827" side_tool="true" weight="0.2357985" />
-      <window_info anchor="bottom" x="-1024" y="23" width="539" height="491" id="Terminal" maximized="true" order="11" sideWeight="0.4968017" weight="0.33547696" />
-      <window_info anchor="bottom" id="Database Console" order="12" weight="0.3290461" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4978678" weight="0.3290461" />
+      <window_info anchor="bottom" id="Database Changes" order="9" weight="0.3290461" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5042644" side_tool="true" weight="0.14683816" />
+      <window_info anchor="bottom" x="-1024" y="23" width="539" height="491" id="Terminal" maximized="true" order="11" sideWeight="0.49573562" weight="0.39978564" />
+      <window_info anchor="bottom" id="Database Console" order="12" weight="0.39442658" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" weight="0.22755101" />
+      <window_info anchor="right" id="Database" order="3" weight="0.16950959" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -890,182 +1023,227 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/laradock" />
     </ignored-roots>
+    <MESSAGE value="Update .env example" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update .env example" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php">
+    <entry file="file://$PROJECT_DIR$/config/talk.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/CharacterTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/UserTableSeeder.php">
+    <entry file="file://$PROJECT_DIR$/app/Models/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
+        <state relative-caret-position="1518">
+          <caret line="72" column="51" selection-start-line="72" selection-start-column="51" selection-end-line="72" selection-end-column="51" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Unit/RegisterTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1210">
-          <caret line="59" column="27" selection-start-line="59" selection-start-column="27" selection-end-line="59" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_09_04_131256_create_character_classes_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="17" column="39" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Services/Auth/RegisterService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="946">
-          <caret line="46" column="42" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://a083a247-8095-44d9-96da-7c55788677a0/schema/elonica/table/character_classes" />
-    <entry file="file://$PROJECT_DIR$/app/Models/Friend.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/serve.bat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="15" column="23" lean-forward="true" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/LastActivityUser.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="968">
-          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/PasswordReset.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Unit/LoginTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="19" column="43" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/tymon/jwt-auth/src/Facades/JWTAuth.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BaseController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="11" column="14" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Auth/Access/AuthorizesRequests.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1386">
-          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Middleware/Authenticate.php">
+    <entry file="file://$PROJECT_DIR$/vendor/nahid/talk/src/Conversations/Conversation.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
+    <entry file="file://$PROJECT_DIR$/resources/lang/ru/messages.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="46" selection-start-line="5" selection-start-column="46" selection-end-line="5" selection-end-column="46" />
+        <state relative-caret-position="242">
+          <caret line="11" column="22" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Services/Auth/LoginService.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Auth/StorePasswordResetRequest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="902">
-          <caret line="45" column="25" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="25" />
+        <state relative-caret-position="-123" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serve.bat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="52" selection-start-column="52" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc.bat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="31" lean-forward="true" selection-start-column="31" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="55" column="15" selection-start-line="55" selection-start-column="10" selection-end-line="55" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Http/FormRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="119" column="7" lean-forward="true" selection-start-line="119" selection-start-column="7" selection-end-line="119" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Auth/StoreUserRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="28" column="64" selection-start-line="28" selection-start-column="64" selection-end-line="28" selection-end-column="64" />
           <folding>
-            <element signature="e#37#57#0#PHP" expanded="true" />
+            <element signature="e#42#72#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Kernel.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Auth/UpdatePasswordRequest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1430">
-          <caret line="65" column="28" selection-start-line="65" selection-start-column="28" selection-end-line="65" selection-end-column="28" />
+        <state relative-caret-position="53">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/User.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Auth/UserRequest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="27" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
+        <state relative-caret-position="273">
+          <caret line="26" column="6" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/app.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Friend/StoreFriendRequest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5060">
-          <caret line="230" column="63" selection-start-line="230" selection-start-column="63" selection-end-line="230" selection-end-column="63" />
+        <state relative-caret-position="506">
+          <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+          <folding>
+            <element signature="e#44#87#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/User/UpdateCharacterRequest.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Conversation/StoreConversationMessageRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="770">
+          <caret line="36" column="33" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Conversation/DeleteConversationRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="792">
+          <caret line="37" column="37" selection-start-line="37" selection-start-column="37" selection-end-line="37" selection-end-column="37" />
+          <folding>
+            <element signature="e#50#93#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3036">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="19" column="6" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/bootstrap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1034">
+          <caret line="47" column="27" selection-start-line="47" selection-end-line="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/app.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/ChatBox.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Events/ChatMessage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="30" column="5" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/channels.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="32" column="30" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
+        <state relative-caret-position="22">
+          <caret line="24" column="19" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/jwt.php">
+    <entry file="file://$PROJECT_DIR$/app/Broadcasting/MessagesChannel.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Providers/BroadcastServiceProvider.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="624">
-          <caret line="222" column="53" selection-start-line="222" selection-start-column="32" selection-end-line="222" selection-end-column="53" />
+        <state relative-caret-position="242">
+          <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/UserRepository.php">
+    <entry file="file://$PROJECT_DIR$/app/Services/Auth/LoginService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="81" column="25" lean-forward="true" selection-start-line="81" selection-start-column="25" selection-end-line="81" selection-end-column="25" />
+        <state relative-caret-position="281">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/json/json.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="202" column="9" selection-start-line="202" selection-start-column="9" selection-end-line="202" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Api/Auth/LoginController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="111" column="43" selection-start-line="111" selection-start-column="43" selection-end-line="111" selection-end-column="43" />
           <folding>
-            <element signature="e#36#56#0#PHP" expanded="true" />
+            <element signature="e#37#77#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Api/Controllers/MessageController.php">
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3256">
-          <caret line="155" column="44" selection-start-line="155" selection-start-column="44" selection-end-line="155" selection-end-column="44" />
-          <folding>
-            <element signature="e#44#71#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="-1320">
+          <caret line="9" column="15" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://a083a247-8095-44d9-96da-7c55788677a0/schema/elonica/table/migrations">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -1076,159 +1254,126 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Unit/FriendTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="792">
-          <caret line="37" column="51" selection-start-line="37" selection-start-column="51" selection-end-line="37" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Unit/UserTest.php">
+    <entry file="file://$PROJECT_DIR$/app/Repositories/BaseRepository.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="das://a083a247-8095-44d9-96da-7c55788677a0/schema/elonica/table/friends">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
+    <entry file="file://$PROJECT_DIR$/app/Repositories/MessageRepository.php" />
+    <entry file="file://$PROJECT_DIR$/app/Repositories/MailConfirmationRepository.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/UserRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1224" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/nahid/talk/src/Conversations/ConversationRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="514">
+          <caret line="193" column="29" lean-forward="true" selection-start-line="178" selection-start-column="2" selection-end-line="193" selection-end-column="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Api/Auth/PasswordResetController.php">
+    <entry file="file://$PROJECT_DIR$/app/Repositories/FriendRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2112" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Api/Controllers/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="880">
-          <caret line="48" column="34" selection-start-line="48" selection-start-column="34" selection-end-line="48" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Friend/StoreFriendRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="23" column="20" lean-forward="true" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
-          <folding>
-            <element signature="e#44#87#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Api/Auth/RegisterController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1452">
-          <caret line="73" column="55" selection-start-line="73" selection-start-column="47" selection-end-line="73" selection-end-column="55" />
+        <state relative-caret-position="1570">
+          <caret line="100" column="36" selection-start-line="100" selection-start-column="36" selection-end-line="100" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Api/Controllers/FriendController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1056">
-          <caret line="53" column="69" selection-start-line="53" selection-start-column="58" selection-end-line="53" selection-end-column="69" />
+        <state relative-caret-position="528">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
           <folding>
             <element signature="e#44#84#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/game.php">
+    <entry file="file://$PROJECT_DIR$/config/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+        <state relative-caret-position="-1716" />
+      </provider>
+    </entry>
+    <entry file="das://a083a247-8095-44d9-96da-7c55788677a0/schema/elonica/table/messages">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/FriendRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2552">
-          <caret line="119" selection-start-line="119" selection-end-line="119" />
+    <entry file="das://a083a247-8095-44d9-96da-7c55788677a0/schema/elonica/table/conversations">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Auth/StorePasswordResetRequest.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/a083a247-8095-44d9-96da-7c55788677a0/console_1.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1210">
-          <caret line="55" column="15" selection-start-line="55" selection-start-column="15" selection-end-line="55" selection-end-column="15" />
+        <state relative-caret-position="44">
+          <caret line="2" column="95" selection-start-line="2" selection-start-column="95" selection-end-line="2" selection-end-column="95" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Auth/StoreUserRequests.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Api/Controllers/ThreadsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="28" column="64" selection-start-line="28" selection-start-column="64" selection-end-line="28" selection-end-column="64" />
+        <state relative-caret-position="1892">
+          <caret line="91" column="23" selection-start-line="91" selection-start-column="23" selection-end-line="91" selection-end-column="23" />
           <folding>
-            <element signature="e#42#72#0#PHP" expanded="true" />
+            <element signature="e#44#84#0#PHP" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Auth/UpdatePasswordRequests.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Auth/UserRequests.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="26" column="6" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Conversation/StoreConversationMessageRequests.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/lang/ru/messages.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="23" column="50" selection-start-line="23" selection-start-column="50" selection-end-line="23" selection-end-column="50" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-541">
-          <caret line="53" column="25" selection-start-line="53" selection-start-column="25" selection-end-line="53" selection-end-column="25" />
+        <state relative-caret-position="1496">
+          <caret line="68" column="40" selection-start-line="68" selection-start-column="40" selection-end-line="68" selection-end-column="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/auth.php">
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="582">
-          <caret line="44" column="30" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
+        <state relative-caret-position="10076">
+          <caret line="471" column="27" selection-start-line="471" selection-start-column="27" selection-end-line="471" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/composer.lock">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestCase.php">
+    <entry file="file://$PROJECT_DIR$/app/Repositories/ConversationsRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        <state relative-caret-position="52">
+          <caret line="57" column="20" selection-start-line="57" selection-start-column="20" selection-end-line="57" selection-end-column="20" />
+          <folding>
+            <element signature="e#36#58#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Api/Auth/LoginController.php">
+    <entry file="file://$PROJECT_DIR$/vendor/nahid/talk/src/Facades/Talk.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1056">
-          <caret line="117" column="98" selection-start-line="117" selection-start-column="98" selection-end-line="117" selection-end-column="98" />
+        <state relative-caret-position="330">
+          <caret line="15" column="20" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/database.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Api/Controllers/MessageController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2697">
-          <caret line="11" column="75" lean-forward="true" selection-start-line="11" selection-start-column="75" selection-end-line="11" selection-end-column="75" />
+        <state relative-caret-position="470">
+          <caret line="73" column="81" selection-start-line="73" selection-start-column="57" selection-end-line="73" selection-end-column="81" />
+          <folding>
+            <element signature="e#44#71#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/nahid/talk/src/Talk.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="273" column="67" lean-forward="true" selection-start-line="273" selection-start-column="67" selection-end-line="273" selection-end-column="67" />
+          <folding>
+            <element signature="e#176#219#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

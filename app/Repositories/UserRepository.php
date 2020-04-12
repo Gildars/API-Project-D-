@@ -84,4 +84,10 @@ class UserRepository extends BaseRepository
         $user = $this->model->where('name', $name)->first();
         return $user;
     }
+
+    public static function isOnline(string $lastActivity) : bool
+    {
+        $expiresAt = Carbon::now()->subMinute(5);
+        return ($lastActivity > $expiresAt) ? true : false;
+    }
 }

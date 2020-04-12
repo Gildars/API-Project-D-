@@ -2,6 +2,6 @@
 
 return array(
     'communicator' => array(
-        'max_friends' => 2
+        'max_friends' => 50
     ),
 );
