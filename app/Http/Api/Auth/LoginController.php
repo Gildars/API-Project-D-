@@ -3,7 +3,7 @@
 namespace App\Http\Api\Auth;
 
 use App\Http\Controllers\BaseController;
-use App\Http\Requests\Auth\UserRequests;
+use App\Http\Requests\Auth\UserRequest;
 use App\Repositories\UserRepository;
 use App\Services\Auth\LoginService;
 use Dingo\Api\Routing\Helpers;
@@ -68,14 +68,14 @@ class LoginController extends BaseController
      * @OA\Response(response="422", description="Не удалось авторизоватсья."),
      *
      * )
-     * @param                       UserRequests $request
+     * @param                       UserRequest $request
      * @return                      \Illuminate\Http\JsonResponse
      */
-    public function login(UserRequests $request)
+    public function login(UserRequest $request)
     {
-        if ($token = $this->loginService->authorization($request, $this->userRepository)) {
+        if ($auth = $this->loginService->authorization($request, $this->userRepository)) {
             $this->clearLoginAttempts($request);
-            return $this->respondWithToken($token);
+            return $this->respondWithToken($auth["token"],$auth["user"]);
         }
         return response()->json(
             [
@@ -94,7 +94,7 @@ class LoginController extends BaseController
      * @OA\Response(response="200", description="Токен обновлен."),
      *
      * )
-     * @param                       UserRequests $request
+     * @param                       UserRequest $request
      * @return                      \Illuminate\Http\JsonResponse
      */
     public function refresh()
@@ -109,14 +109,15 @@ class LoginController extends BaseController
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    protected function respondWithToken($token)
+    protected function respondWithToken($token, $user)
     {
         return response()->json([
             'message' => 'User Authenticated',
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => Carbon::now('UTC')->addMinutes(auth()->factory()->getTTL())->timestamp
-        ],200);
+            'expires_in' => Carbon::now('UTC')->addMinutes(auth()->factory()->getTTL())->timestamp,
+            'user' => $user->toArray()
+            , 200]);
     }
 
     /**

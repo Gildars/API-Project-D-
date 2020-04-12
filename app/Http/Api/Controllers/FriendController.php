@@ -111,7 +111,7 @@ class FriendController extends BaseController
     {
         $friends = $this->friendRepository->getFriends(Auth::id());
         if ($friends) {
-            return response($friends, 200);
+            return response()->json($friends, 200);
         }
         return response(
             [

@@ -98,11 +98,11 @@ class FriendRepository extends BaseRepository
                         ->where('friends.id_friend_two', '=', $id);
                 }
             )
-            ->orderBy('isOnline', 'DESC')
-            ->get(['users.id', 'users.lvl', 'users.name', 'users.last_activity AS isOnline']);
+            ->orderBy('last_activity', 'DESC')
+            ->get(['users.id', 'users.lvl', 'users.name', 'users.last_activity']);
         if (!$friends->isEmpty()) {
             foreach ($friends as $friend) {
-                $friend->isOnline = $friend->isOnline('isOnline');
+                $friend->last_activity = $friend->isOnline;
             }
             return $friends;
         } else {
@@ -110,7 +110,9 @@ class FriendRepository extends BaseRepository
         }
     }
 
+
     /**
+     * TODO добавить роут для этой функции
      * @param int $id
      * @return mixed
      */

@@ -66,7 +66,7 @@ $api->version('v1', function ($api) {
             $api->group([
                 'prefix' => 'messages'
             ], function ($api) {
-                $api->post('/{id}', 'App\Http\Api\Controllers\MessageController@sendMessage');
+                $api->post('/{id}/{skip?}', 'App\Http\Api\Controllers\MessageController@sendMessage');
                 $api->delete(
                     '/{id}',
                     'App\Http\Api\Controllers\MessageController@deleteMessage'
@@ -77,6 +77,23 @@ $api->version('v1', function ($api) {
                 )->where([
                     'receiverId' => '[0-9]+',
                     'offset' => '[0-9]+'
+                ]);
+            });
+
+            $api->group([
+                'prefix' => 'threads'
+            ], function ($api) {
+                $api->get(
+                    '/{skip?}',
+                    'App\Http\Api\Controllers\ThreadsController@getInbox'
+                )->where([
+                    'skip' => '[0-9]+',
+                ]);
+                $api->delete(
+                    '/{id}',
+                    'App\Http\Api\Controllers\ThreadsController@deleteConversation'
+                )->where([
+                    'id' => '[0-9]+',
                 ]);
             });
         });
