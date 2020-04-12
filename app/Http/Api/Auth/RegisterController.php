@@ -3,8 +3,8 @@
 namespace App\Http\Api\Auth;
 
 use App\Http\Controllers\BaseController;
-use App\Http\Requests\Auth\StoreUserRequests;
-use App\Http\Requests\User\UpdateCharacterRequests;
+use App\Http\Requests\Auth\StoreUserRequest;
+use App\Http\Requests\User\UpdateCharacterRequest;
 use App\Repositories\UserRepository;
 use App\Services\Auth\LoginService;
 use App\Services\Auth\RegisterService;
@@ -68,10 +68,10 @@ class RegisterController extends BaseController
      * @OA\Response(response="201", description="Игрок успешно зарегистрирован."),
      * @OA\Response(response="404", description="Игрок не найден."),
      * )
-     * @param                       StoreUserRequests $request
+     * @param                       StoreUserRequest $request
      * @return                      \Illuminate\Http\JsonResponse
      */
-    public function register(StoreUserRequests $request)
+    public function register(StoreUserRequest $request)
     {
         if ($token = $this->registerService->createUserAndAuthorize($request)) {
             return response()->json(
@@ -111,10 +111,10 @@ class RegisterController extends BaseController
      * @OA\Response(response="201", description="Персонаж успешно создан."),
      * @OA\Response(response="422", description="Нельзя создать персонажа."),
      * )
-     * @param                       UpdateCharacterRequests $request
+     * @param                       UpdateCharacterRequest $request
      * @return                      \Illuminate\Http\JsonResponse
      */
-    protected function createCharacter(UpdateCharacterRequests $request)
+    protected function createCharacter(UpdateCharacterRequest $request)
     {
         $this->middleware('api.auth');
         if ($user = $this->registerService->createCharacter($request)) {

@@ -32,10 +32,11 @@ class LoginService
         $this->userRepository = $userRepository;
     }
 
+
     /**
-     * @param  Request        $request
-     * @param  UserRepository $userRepository
-     * @return bool|string
+     * @param Request $request
+     * @param UserRepository $userRepository
+     * @return array|bool
      */
     public function authorization(Request $request, UserRepository $userRepository)
     {
@@ -43,13 +44,16 @@ class LoginService
 
         if ($this->comparePassword($user, $request->password)) {
             $token = $this->getTokenFromUser($user);
-            return $token;
+            return [
+                "token" => $token,
+                "user" => $user
+            ];
         }
         return false;
     }
 
     /**
-     * @param  User   $user
+     * @param  User $user
      * @param  string $password
      * @return bool
      */

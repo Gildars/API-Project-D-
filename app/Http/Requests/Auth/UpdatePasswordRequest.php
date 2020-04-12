@@ -3,14 +3,8 @@
 namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
-/**
- * Class UserRequests
- *
- * @package App\Http\Requests\Auth
- */
-class UserRequests extends FormRequest
+class UpdatePasswordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -19,7 +13,7 @@ class UserRequests extends FormRequest
      */
     public function authorize()
     {
-        return Auth::guest();
+        return true;
     }
 
     /**
@@ -30,16 +24,12 @@ class UserRequests extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email|max:255|exists:users',
-            'password' => 'required|min:6|max:28',
+            'email' => 'required|string|email',
+            'password' => 'required|string|confirmed',
+            'token' => 'required|string'
         ];
     }
 
-    /**
-     * Get custom attributes for validator errors.
-     *
-     * @return array
-     */
     public function attributes()
     {
         return [

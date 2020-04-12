@@ -69,12 +69,13 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public function isOnline($column = null)
+
+    /** Returns the value online or offline player.
+     * @return bool
+     */
+    public function getIsOnlineAttribute()
     {
         $expiresAt = Carbon::now()->subMinute(5);
-        if ($column) {
-            return ($this->{$column} > $expiresAt) ? true : false;
-        }
         return ($this->last_activity > $expiresAt) ? true : false;
     }
 }

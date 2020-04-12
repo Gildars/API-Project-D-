@@ -48,6 +48,20 @@
                 }
             }
         },
+        "/refresh": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "description": "Обновление токена доступа.",
+                "operationId": "App\\Http\\Api\\Auth\\LoginController::refresh",
+                "responses": {
+                    "200": {
+                        "description": "Токен обновлен."
+                    }
+                }
+            }
+        },
         "/logout": {
             "post": {
                 "tags": [
@@ -392,6 +406,9 @@
                     "201": {
                         "description": "Сообщение отправленно."
                     },
+                    "404": {
+                        "description": "Пользователь не найден."
+                    },
                     "422": {
                         "description": "Не удалось отправить сообщение."
                     }
@@ -423,6 +440,58 @@
                     },
                     "422": {
                         "description": "Не удалось удалить сообщение."
+                    }
+                }
+            }
+        },
+        "/threads": {
+            "get": {
+                "tags": [
+                    "threads"
+                ],
+                "description": "Возвращает список диалогов.",
+                "parameters": [
+                    {
+                        "name": "skip",
+                        "in": "path",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Список диалогов."
+                    },
+                    "404": {
+                        "description": "Диалоги не найдены."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "threads"
+                ],
+                "description": "Удаляет диалог.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Диалог успешно удален."
+                    },
+                    "404": {
+                        "description": "Диалог не найден."
                     }
                 }
             }

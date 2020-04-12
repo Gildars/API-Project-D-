@@ -4,8 +4,9 @@ namespace App\Http\Api\Controllers;
 
 use App\Events\ChatMessage;
 use App\Http\Controllers\BaseController;
-use App\Http\Requests\Converstion\StoreConversationMessageRequests;
-use App\Http\Requests\StoreConversationMessage;
+use App\Http\Requests\Conversation\StoreConversationMessageRequest;
+use App\Models\User;
+use App\Repositories\ConversationsRepository;
 use Illuminate\Http\Request;
 use Nahid\Talk\Facades\Talk;
 use Auth;
@@ -24,19 +25,21 @@ class MessageController extends BaseController
      */
     protected $authUser;
 
+    protected $conversationsRepository;
+
     /**
      * MessageController constructor.
      */
-    public function __construct()
+    public function __construct(ConversationsRepository $conversationsRepository)
     {
         parent::__construct();
-        $this->middleware('api.auth');
         $this->middleware(
             function ($request, $next) {
                 Talk::setAuthUserId(Auth::user()->id);
                 return $next($request);
             }
         );
+        $this->conversationsRepository = $conversationsRepository;
     }
 
     /**
@@ -66,9 +69,10 @@ class MessageController extends BaseController
      * @OA\Response(response="404", description="Сообщения не найдены."),
      * )
      */
-    public function chatHistory($id, $offset = 0)
+    public function chatHistory($id, int $skip = 0)
     {
-        $conversations = Talk::getMessagesByUserId($id, $offset, 10);
+        $conversations = $this->conversationsRepository->getConversationsByUserId($id,$skip,6);
+
         if (!$conversations) {
             return response()->json(
                 [
@@ -79,10 +83,11 @@ class MessageController extends BaseController
                 404
             );
         }
-
+/*
         if (count($conversations->messages) > 0) {
-            $conversations->messages = $conversations->messages->sortBy('id');
-        }
+            $conversations->messages = $conversations->messages->sortBy('created_at');
+            $conversations->messages->reverse()->all();
+        }*/
         return response()->json($conversations->messages, 200);
     }
 
@@ -126,21 +131,26 @@ class MessageController extends BaseController
      *         )
      * ),
      * @OA\Response(response="201", description="Сообщение отправленно."),
+     * @OA\Response(response="404", description="Пользователь не найден."),
      * @OA\Response(response="422", description="Не удалось отправить сообщение."),
      * )
-     * @param                       StoreConversationMessageRequests $request
+     * @param                       StoreConversationMessageRequest $request
      * @return                      \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
-    public function sendMessage(StoreConversationMessageRequests $request)
+    public function sendMessage(StoreConversationMessageRequest $request)
     {
-        if ($message = Talk::sendMessageByUserId($request->id, $request->message)) {
-            broadcast(new ChatMessage($message))->toOthers();
+        if (!User::find($request->id)) {
             return response(
                 [
-                    'message' => trans('messages.message.send')
+                    'message' => trans('messages.user.not_found')
                 ],
-                201
+                404
             );
+        }
+        if ($message = Talk::sendMessageByUserId($request->id, $request->message)) {
+            broadcast(new ChatMessage($message))->toOthers();
+            return response()->json($message,
+                201);
         }
         return response(
             [
@@ -184,32 +194,12 @@ class MessageController extends BaseController
         }
         return response()->json(
             [
-            'message' => trans('messages.message.not_fount')
+                'message' => trans('messages.message.not_fount')
             ],
             404
         );
     }
 
-
-    /**
-     *
-     */
-    public function getInbox()
-    {
-        if ($inboxes = Talk::getInbox()) {
-            return response()->json(
-                [
-                $inboxes
-                ]
-            );
-        }
-        return response()->json(
-            [
-            'message' => trans('messages.message.not_fount')
-            ],
-            404
-        );
-    }
 
     /**
      *
