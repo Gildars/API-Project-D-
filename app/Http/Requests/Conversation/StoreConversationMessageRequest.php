@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Requests\Converstion;
+namespace App\Http\Requests\Conversation;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Auth;
 
 /**
- * Class StoreConversationMessageRequests
+ * Class StoreConversationMessageRequest
  *
  * @package App\Http\Requests\Converstion
  */
-class StoreConversationMessageRequests extends FormRequest
+class StoreConversationMessageRequest extends FormRequest
 {
 
     /**
