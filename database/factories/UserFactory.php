@@ -39,8 +39,17 @@ $factory->define(App\User::class, static function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(Character::class, static function (Faker\Generator $faker) {
 
+$factory->define(Inventory::class, static function(Character $character){
+    /** @var InventoryRepositoryInterface $inventoryRepository */
+    $inventoryRepository = resolve(InventoryRepositoryInterface::class);
+    return [
+        'id' => $inventoryRepository->nextIdentity()->toString(),
+        'character_id' => $character->getId(),
+    ];
+});
+
+$factory->define(Character::class, static function (Faker\Generator $faker) {
 
     /** @var CharacterRepositoryInterface $characterRepository */
     $characterRepository = resolve(CharacterRepositoryInterface::class);
@@ -59,11 +68,11 @@ $factory->define(Character::class, static function (Faker\Generator $faker) {
 
     $characterId = $characterRepository->nextIdentity()->toString();
 
-    /** @var Inventory $inventory */
-    Inventory::query()->create([
+    /*/** @var Inventory $inventory */
+   /* Inventory::query()->create([
         'id' => $inventoryRepository->nextIdentity()->toString(),
         'character_id' => $characterId,
-    ]);
+    ]);*/
 
     return [
         'id' => $characterId,

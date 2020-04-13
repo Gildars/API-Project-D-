@@ -65,6 +65,7 @@ class CharacterSeeder extends Seeder
         ]);
 
         /** @var Inventory $inventory */
+
         $inventory = Inventory::query()->create([
             'id' => $inventoryRepository->nextIdentity()->toString(),
             'character_id' => $someone->getId(),
@@ -92,6 +93,7 @@ class CharacterSeeder extends Seeder
             });
 
         factory(Character::class, 50)->create();
+        /**TODO Использовать фабрику Inventories */
         factory(Item::class, 50)->create();
     }
 }
