@@ -5,6 +5,8 @@ namespace App\Http\Api\Auth;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\Auth\StoreUserRequest;
 use App\Http\Requests\User\UpdateCharacterRequest;
+use App\Modules\User\Application\Services\UserService;
+use App\Modules\User\UI\Http\CommandMappers\CreateUserCommandMapper;
 use App\Repositories\UserRepository;
 use App\Services\Auth\LoginService;
 use App\Services\Auth\RegisterService;
@@ -22,6 +24,17 @@ class RegisterController extends BaseController
     use Helpers;
 
     /**
+     * @var UserService
+     */
+    private $userService;
+
+    /**
+     * @var CreateUserCommandMapper
+     */
+    private $mapper;
+
+
+    /**
      * @var UserRepository
      */
     protected $userRepository;
@@ -32,16 +45,16 @@ class RegisterController extends BaseController
     protected $registerService;
 
     /**
-     * RegisterController constructor.
+     * Create a new controller instance.
      *
-     * @param UserRepository $userRepository
-     * @param RegisterService $registerService
+     * @param UserService $userService
+     * @param CreateUserCommandMapper $mapper
      */
-    public function __construct(UserRepository $userRepository, RegisterService $registerService)
+    public function __construct(UserService $userService, CreateUserCommandMapper $mapper)
     {
         parent::__construct();
-        $this->userRepository = $userRepository;
-        $this->registerService = $registerService;
+        $this->userService = $userService;
+        $this->mapper = $mapper;
     }
 
     /**
@@ -73,6 +86,10 @@ class RegisterController extends BaseController
      */
     public function register(StoreUserRequest $request)
     {
+        $request = $this->mapper->map($request);
+
+         $this->userService->create($request);
+
         if ($token = $this->registerService->createUserAndAuthorize($request)) {
             return response()->json(
                 [

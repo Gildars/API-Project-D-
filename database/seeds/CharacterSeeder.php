@@ -22,6 +22,7 @@ class CharacterSeeder extends Seeder
     public function run()
     {
 
+
         factory(Character::class, 10)->create()->each(function ($character) {
             $item = factory(Item::class)->create(['creator_character_id' => $character->id]);
             $inventory = factory(Inventory::class)->create([

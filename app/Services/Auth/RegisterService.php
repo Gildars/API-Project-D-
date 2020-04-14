@@ -41,11 +41,11 @@ class RegisterService
      * @param  Request $request
      * @return bool|string
      */
-    public function createUserAndAuthorize(Request $request)
+    public function createUserAndAuthorize(CreateUserCommand $createUserCommand)
     {
         $user = null;
-        $user = $this->userRepository->create($request);
-        if ($user && ($token = $this->loginService->authorization($request, $this->userRepository))) {
+        $user = $this->userService->create($createUserCommand);
+        if ($user && ($token = $this->loginService->authorization($createUserCommand, $this->userRepository))) {
             return $token;
         }
         return false;
