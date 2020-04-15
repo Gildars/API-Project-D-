@@ -14,6 +14,7 @@
 use App\Character;
 use App\Inventory;
 use App\ItemPrototype;
+use App\CharacterClass;
 use App\Location;
 use App\Modules\Character\Application\Contracts\CharacterRepositoryInterface;
 use App\Modules\Equipment\Application\Contracts\InventoryRepositoryInterface;
@@ -21,7 +22,8 @@ use App\Modules\Equipment\Application\Contracts\ItemRepositoryInterface;
 use App\User;
 use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Support\Str;
-
+use App\Modules\Character\Domain\HitPoints;
+use App\Modules\Character\Infrastructure\Repositories\CharacterClassRepository;
 /** @var Factory $factory */
 
 $factory->define(App\User::class, static function (Faker\Generator $faker) {
@@ -52,7 +54,14 @@ $factory->define(Character::class, static function (Faker\Generator $faker) {
     /** @var CharacterRepositoryInterface $characterRepository */
     $characterRepository = resolve(CharacterRepositoryInterface::class);
 
+    /** @var CharacterClass $characterClassModel */
+    $characterClassModel = CharacterClass::query()->inRandomOrder()->first();
+
     $location = Location::query()->inRandomOrder()->first();
+
+    $characterClass = (new CharacterClassRepository())->getOne($characterClassModel->getId());
+
+    $hitPoints = HitPoints::byCharacterClass($characterClass);
 
     $genders = ['male', 'female'];
 
@@ -65,6 +74,7 @@ $factory->define(Character::class, static function (Faker\Generator $faker) {
 
         'location_id' => $location,
 
+        'character_class_id' => $characterClass->getId(),
         'name' => $faker->name,
         'gender' => $genders[array_rand($genders)],
 
@@ -73,15 +83,13 @@ $factory->define(Character::class, static function (Faker\Generator $faker) {
         'reputation' => 0,
 
         // attributes
+        'strength' => $characterClass->getStrength(),
+        'agility' => $characterClass->getAgility(),
+        'stamina' => $characterClass->getStamina(),
+        'intelligence' => $characterClass->getIntelligence(),
 
-        'strength' => 15,
-        'agility' => 15,
-        'constitution' => 15,
-        'intelligence' => 15,
-        'charisma' => 15,
-
-        'hit_points' => 200,
-        'total_hit_points' => 250,
+        'hit_points' => $hitPoints->getCurrentHitPoints(),
+        'total_hit_points' => $hitPoints->getMaximumHitPoints(),
 
         'user_id' => static function () {
             return factory(User::class)->create()->id;

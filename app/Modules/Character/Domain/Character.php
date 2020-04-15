@@ -28,7 +28,7 @@ class Character
     /**
      * @var int
      */
-    private $raceId;
+    private $characterClassId;
     /**
      * @var string
      */
@@ -69,14 +69,10 @@ class Character
      * @var int|null
      */
     private $userId;
-    /**
-     * @var ImageId
-     */
-    private $profilePictureId;
 
     public function __construct(
         CharacterId $id,
-        int $raceId,
+        int $characterClassId,
         int $levelId,
         string $locationId,
         string $name,
@@ -88,15 +84,14 @@ class Character
         HitPoints $hitPoints,
         Statistics $statistics,
         Inventory $inventory,
-        int $userId = null,
-        ImageId $profilePictureId = null
+        int $userId = null
     )
     {
         $this->id = $id;
         $this->name = $name;
         $this->gender = $gender;
         $this->levelId = $levelId;
-        $this->raceId = $raceId;
+        $this->characterClassId = $characterClassId;
         $this->locationId = $locationId;
         $this->xp = $xp;
         $this->money = $money;
@@ -106,7 +101,6 @@ class Character
         $this->statistics = $statistics;
         $this->inventory = $inventory;
         $this->userId = $userId;
-        $this->profilePictureId = $profilePictureId;
     }
 
     public function getLevelNumber(): int
@@ -189,19 +183,14 @@ class Character
         return $this->attributes->getAgility();
     }
 
-    public function getConstitution(): int
+    public function getStamina(): int
     {
-        return $this->attributes->getConstitution();
+        return $this->attributes->getStamina();
     }
 
     public function getIntelligence(): int
     {
         return $this->attributes->getIntelligence();
-    }
-
-    public function getCharisma(): int
-    {
-        return $this->attributes->getCharisma();
     }
 
     public function getUnassignedAttributePoints(): int
@@ -249,9 +238,9 @@ class Character
         return $this->xp;
     }
 
-    public function getRaceId(): int
+    public function getCharacterClassId(): int
     {
-        return $this->raceId;
+        return $this->characterClassId;
     }
 
     public function getMoney(): Money
@@ -328,24 +317,6 @@ class Character
         $this->levelId = $levelId;
 
         $this->attributes = $this->attributes->addAvailablePoints($points);
-    }
-
-    public function setProfilePictureId(ImageId $profilePictureId): void
-    {
-        $this->profilePictureId = $profilePictureId;
-    }
-
-    /**
-     * @return ImageId|null
-     */
-    public function getProfilePictureId(): ?ImageId
-    {
-        return $this->profilePictureId;
-    }
-
-    public function removeProfilePicture(): void
-    {
-        $this->profilePictureId = null;
     }
 
     public function getInventory(): Inventory

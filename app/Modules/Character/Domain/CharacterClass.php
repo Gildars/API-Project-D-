@@ -3,7 +3,7 @@
 
 namespace App\Modules\Character\Domain;
 
-class Race
+class CharacterClass
 {
     /**
      * @var int
@@ -18,18 +18,6 @@ class Race
      */
     private $name;
     /**
-     * @var string
-     */
-    private $description;
-    /**
-     * @var string
-     */
-    private $maleImage;
-    /**
-     * @var string
-     */
-    private $femaleImage;
-    /**
      * @var Attributes
      */
     private $attributes;
@@ -38,17 +26,11 @@ class Race
         int $id,
         string $startingLocationId,
         string $name,
-        string $description,
-        string $maleImage,
-        string $femaleImage,
         Attributes $attributes
     ) {
         $this->id = $id;
         $this->startingLocationId = $startingLocationId;
         $this->name = $name;
-        $this->description = $description;
-        $this->maleImage = $maleImage;
-        $this->femaleImage = $femaleImage;
         $this->attributes = $attributes;
     }
 
@@ -60,11 +42,6 @@ class Race
     public function getName(): string
     {
         return $this->name;
-    }
-
-    public function getImageByGender(string $gender):string
-    {
-        return $this->{"{$gender}_image"};
     }
 
     public function getStartingLocationId(): string
@@ -82,9 +59,9 @@ class Race
         return $this->attributes->getAgility();
     }
 
-    public function getConstitution(): int
+    public function getStamina(): int
     {
-        return $this->attributes->getConstitution();
+        return $this->attributes->getStamina();
     }
 
     public function getIntelligence(): int
@@ -92,32 +69,4 @@ class Race
         return $this->attributes->getIntelligence();
     }
 
-    public function getCharisma(): int
-    {
-        return $this->attributes->getCharisma();
-    }
-
-    /**
-     * @return string
-     */
-    public function getDescription(): string
-    {
-        return $this->description;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMaleImage(): string
-    {
-        return $this->maleImage;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFemaleImage(): string
-    {
-        return $this->femaleImage;
-    }
 }

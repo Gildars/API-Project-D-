@@ -5,15 +5,16 @@ namespace App\Modules\User\UI\Http\CommandMappers;
 
 
 use App\Modules\User\Application\Commands\CreateUserCommand;
+use Illuminate\Http\Request;
 
 class CreateUserCommandMapper
 {
-    public function map(array $data): CreateUserCommand
+    public function map(Request $request): CreateUserCommand
     {
         return new CreateUserCommand(
-            $data['name'],
-            $data['email'],
-            bcrypt($data['password'])
+            $request->input('name'),
+            $request->input('email'),
+            bcrypt($request->input('password'))
         );
     }
 }

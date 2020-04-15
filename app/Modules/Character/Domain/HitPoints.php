@@ -20,18 +20,18 @@ class HitPoints
      */
     private $maximumHitPoints;
 
-    public static function byRace(Race $race): HitPoints
+    public static function byCharacterClass(CharacterClass $characterClass): HitPoints
     {
-        $maximumHitPoints = self::constitutionToHitPoints($race->getConstitution());
+        $maximumHitPoints = self::staminaToHitPoints($characterClass->getStamina());
 
         return new HitPoints($maximumHitPoints, $maximumHitPoints);
     }
 
-    public function withIncrementedConstitution(): HitPoints
+    public function withIncrementedStamina(): HitPoints
     {
         return new HitPoints(
             $this->currentHitPoints,
-            $this->maximumHitPoints + self::constitutionToHitPoints(1)
+            $this->maximumHitPoints + self::staminaToHitPoints(1)
         );
     }
 
@@ -43,9 +43,9 @@ class HitPoints
         );
     }
 
-    protected static function constitutionToHitPoints(int $constitutionPoints): int
+    protected static function staminaToHitPoints(int $staminaPoints): int
     {
-        return $constitutionPoints * 10 + self::throwTwoDices();
+        return $staminaPoints * 10 + self::throwTwoDices();
     }
 
     public function __construct(int $currentHitPoints, int $maximumHitPoints)

@@ -52,9 +52,9 @@ class Attributes
         return $this->collection->get('agility');
     }
 
-    public function getConstitution(): int
+    public function getStamina(): int
     {
-        return $this->collection->get('constitution');
+        return $this->collection->get('stamina');
     }
 
     public function getIntelligence(): int
@@ -62,10 +62,6 @@ class Attributes
         return $this->collection->get('intelligence');
     }
 
-    public function getCharisma(): int
-    {
-        return $this->collection->get('charisma');
-    }
 
     public function getUnassignedAttributePoints(): int
     {

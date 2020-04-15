@@ -53,14 +53,13 @@ class CharacterRepository implements CharacterRepositoryInterface
 
             'strength' => $character->getStrength(),
             'agility' => $character->getAgility(),
-            'constitution' => $character->getConstitution(),
+            'stamina' => $character->getStamina(),
             'intelligence' => $character->getIntelligence(),
-            'charisma' => $character->getCharisma(),
 
             'hit_points' => $character->getHitPoints(),
             'total_hit_points' => $character->getTotalHitPoints(),
 
-            //'race_id' => $character->getRaceId(),
+            'character_class_id' => $character->getCharacterClassId(),
             'location_id' => $character->getLocationId(),
 
             'battles_won' => $character->getBattlesWon(),
@@ -83,8 +82,6 @@ class CharacterRepository implements CharacterRepositoryInterface
         /** @var CharacterModel $characterModel */
         $characterModel = CharacterModel::query()->findOrFail($character->getId()->toString());
 
-        $profilePictureId = $character->getProfilePictureId();
-
         $characterModel->update([
             'name' => $character->getName(),
             'gender' => $character->getGender()->getValue(),
@@ -96,9 +93,8 @@ class CharacterRepository implements CharacterRepositoryInterface
 
             'strength' => $character->getStrength(),
             'agility' => $character->getAgility(),
-            'constitution' => $character->getConstitution(),
+            'stamina' => $character->getStamina(),
             'intelligence' => $character->getIntelligence(),
-            'charisma' => $character->getCharisma(),
             'available_attribute_points' => $character->getUnassignedAttributePoints(),
 
             'hit_points' => $character->getHitPoints(),
@@ -108,8 +104,6 @@ class CharacterRepository implements CharacterRepositoryInterface
             'battles_lost' => $character->getBattlesLost(),
 
             'location_id' => $character->getLocationId(),
-
-            'profile_picture_id' => $profilePictureId ? $profilePictureId->toString() : null,
         ]);
     }
 }

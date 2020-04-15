@@ -21,16 +21,15 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property integer battles_lost
  * @property integer strength
  * @property integer agility
- * @property integer constitution
+ * @property integer stamina
  * @property integer intelligence
- * @property integer charisma
+ * @property CharacterClass characterClass
  * @property string location_id
  * @property string gender
  * @property int total_hit_points
  * @property int victor_xp_gained
  * @property string name
  * @property int level_id
- * @property string profile_picture_id
  * @property Inventory inventory
  */
 class Character extends Model
@@ -44,9 +43,9 @@ class Character extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function race(): BelongsTo
+    public function characterClass(): BelongsTo
     {
-        return $this->belongsTo(Race::class);
+        return $this->belongsTo(CharacterClass::class);
     }
 
     public function location(): BelongsTo
@@ -91,10 +90,6 @@ class Character extends Model
         return $this->user === null;
     }
 
-    public function hasProfilePicture(): bool
-    {
-        return $this->profilePicture()->exists();
-    }
 
     public function isOnline(): bool
     {
@@ -105,9 +100,13 @@ class Character extends Model
         return $this->user->isOnline();
     }
 
-    public function getRaceName(): string
+    public function getCharacterClassName(): string
     {
-        return $this->race->getName();
+        return $this->characterClass->getName();
+    }
+    public function getCharacterId(): int
+    {
+        return $this->characterClass->getId();
     }
 
     public function getLevelNumber():int
@@ -140,19 +139,14 @@ class Character extends Model
         return $this->agility;
     }
 
-    public function getConstitution(): int
+    public function getStamina(): int
     {
-        return $this->constitution;
+        return $this->stamina;
     }
 
     public function getIntelligence(): int
     {
         return $this->intelligence;
-    }
-
-    public function getCharisma(): int
-    {
-        return $this->charisma;
     }
 
     public function getLocationId(): string

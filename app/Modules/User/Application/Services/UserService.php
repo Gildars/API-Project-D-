@@ -15,6 +15,7 @@ class UserService
             'name' => $command->getName(),
             'email' => $command->getEmail(),
             'password' => $command->getPassword()
+
         ]);
 
         return $user;

@@ -13,7 +13,6 @@ use App\Modules\Character\Domain\Money;
 use App\Modules\Character\Domain\HitPoints;
 use App\Modules\Character\Domain\Reputation;
 use App\Character as CharacterModel;
-use App\Modules\Image\Domain\ImageId;
 
 
 class CharacterReconstitutionFactory
@@ -32,11 +31,10 @@ class CharacterReconstitutionFactory
     {
         $inventory = $this->inventoryReconstitutionFactory->reconstitute($characterModel->inventory);
 
-        $profilePictureId = $characterModel->getProfilePictureId();
 
         $character = new Character(
             CharacterId::fromString($characterModel->getId()),
-            $characterModel->getRaceId(),
+            $characterModel->getCharacterId(),
             $characterModel->getLevelNumber(),
             $characterModel->getLocationId(),
             $characterModel->getName(),
@@ -47,9 +45,8 @@ class CharacterReconstitutionFactory
             new Attributes([
                 'strength' => $characterModel->getStrength(),
                 'agility' => $characterModel->getAgility(),
-                'constitution' => $characterModel->getConstitution(),
+                'stamina' => $characterModel->getStamina(),
                 'intelligence' => $characterModel->getIntelligence(),
-                'charisma' => $characterModel->getCharisma(),
                 'unassigned' => $characterModel->getAvailableAttributePoints(),
             ]),
             new HitPoints(
@@ -61,8 +58,7 @@ class CharacterReconstitutionFactory
                 'battlesWon' => $characterModel->getBattlesWon(),
             ]),
             $inventory,
-            $characterModel->getUserId(),
-            $profilePictureId ? ImageId::fromString($profilePictureId) : null
+            $characterModel->getUserId()
         );
 
         return $character;

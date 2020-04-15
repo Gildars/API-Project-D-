@@ -2,6 +2,10 @@
 
 namespace App\Services\Auth;
 
+use App\Modules\Character\Application\Services\CharacterService;
+use App\Modules\Character\UI\Http\CommandMappers\CreateCharacterCommandMapper;
+use App\Modules\User\Application\Services\UserService;
+use App\Modules\User\UI\Http\CommandMappers\CreateUserCommandMapper;
 use App\Repositories\UserRepository;
 use Dingo\Api\Routing\Helpers;
 use Illuminate\Http\Request;
@@ -17,6 +21,19 @@ class RegisterService
     use Helpers;
 
     /**
+     * @var UserService
+     */
+    protected $userService;
+    /**
+     * @var CreateUserCommandMapper
+     */
+    protected $userCommandMapper;
+
+    /**
+     * @var CreateCharacterCommandMapper
+     */
+    protected $characterCommandMapper;
+    /**
      * @var UserRepository
      */
     protected $userRepository;
@@ -24,29 +41,58 @@ class RegisterService
      * @var LoginService
      */
     protected $loginService;
+    /**
+     * @var CharacterService
+     */
+    protected $characterService;
 
     /**
-     * RegisterService constructor.
+     * Create a new controller instance.
      *
-     * @param $userRepository
-     * @param $loginService
+     * @param UserService $userService
+     * @param CreateUserCommandMapper $userCommandMapper
+     * @param UserRepository $userRepository
+     * @param CreateCharacterCommandMapper $characterCommandMapper
+     * @param LoginService $loginService
+     * @param CharacterService $characterService
      */
-    public function __construct(UserRepository $userRepository, LoginService $loginService)
-    {
+    public function __construct(
+        UserService $userService,
+        CreateUserCommandMapper $userCommandMapper,
+        UserRepository $userRepository,
+        CreateCharacterCommandMapper $characterCommandMapper,
+        LoginService $loginService,
+        CharacterService $characterService
+    ) {
+        $this->userService = $userService;
+        $this->userCommandMapper = $userCommandMapper;
         $this->userRepository = $userRepository;
         $this->loginService = $loginService;
+        $this->characterCommandMapper = $characterCommandMapper;
+        $this->characterService = $characterService;
     }
 
     /**
-     * @param  Request $request
+     * @param array $request
      * @return bool|string
      */
-    public function createUserAndAuthorize(CreateUserCommand $createUserCommand)
+    public function createUserAndAuthorize(Request $request)
     {
-        $user = null;
-        $user = $this->userService->create($createUserCommand);
-        if ($user && ($token = $this->loginService->authorization($createUserCommand, $this->userRepository))) {
-            return $token;
+        DB::beginTransaction();
+        try {
+            // Create User
+            $userCommandMapper = $this->userCommandMapper->map($request);
+            $user = $this->userService->create($userCommandMapper);
+
+            //Create Character
+            $createCharacterCommand = $this->characterCommandMapper->map($request);
+            $character = $this->characterService->create($createCharacterCommand);
+            if ($user && $character && ($token = $this->loginService->authorization($request, $this->userRepository))) {
+                DB::commit();
+                return $token;
+            }
+        } catch (\Exception $e) {
+            DB::rollback();
         }
         return false;
     }

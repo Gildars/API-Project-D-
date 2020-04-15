@@ -4,11 +4,11 @@
 namespace App\Modules\Character\Application\Services;
 
 
-use App\Modules\Battle\Application\Contracts\BattleRepositoryInterface;
-use App\Modules\Battle\Domain\Battle;
-use App\Modules\Battle\Domain\BattleId;
-use App\Modules\Battle\Domain\BattleRounds;
-use App\Modules\Character\Application\Contracts\RaceRepositoryInterface;
+//use App\Modules\Battle\Application\Contracts\BattleRepositoryInterface;
+//use App\Modules\Battle\Domain\Battle;
+//use App\Modules\Battle\Domain\BattleId;
+//use App\Modules\Battle\Domain\BattleRounds;
+use App\Modules\Character\Application\Contracts\CharacterClassRepositoryInterface;
 use App\Modules\Character\Domain\CharacterId;
 use App\Modules\Character\Application\Contracts\CharacterRepositoryInterface;
 use App\Modules\Character\Domain\Character;
@@ -19,7 +19,6 @@ use App\Modules\Character\Application\Commands\MoveCharacterCommand;
 use App\Modules\Character\Application\Factories\CharacterFactory;
 use App\Modules\Equipment\Application\Commands\CreateInventoryCommand;
 use App\Modules\Equipment\Application\Services\InventoryService;
-use App\Modules\Image\Domain\Image;
 use App\Modules\Level\Application\Services\LevelService;
 use Illuminate\Support\Facades\DB;
 
@@ -34,13 +33,13 @@ class CharacterService
      */
     private $characterRepository;
     /**
-     * @var RaceRepositoryInterface
+     * @var CharacterClassRepositoryInterface
      */
-    private $raceRepository;
+    private $characterClassRepository;
     /**
      * @var BattleRepositoryInterface
      */
-    private $battleRepository;
+   // private $battleRepository;
     /**
      * @var LevelService
      */
@@ -53,16 +52,16 @@ class CharacterService
     public function __construct(
         CharacterFactory $characterFactory,
         CharacterRepositoryInterface $characterRepository,
-        RaceRepositoryInterface $raceRepository,
-        BattleRepositoryInterface $battleRepository,
+        CharacterClassRepositoryInterface $characterClassRepository,
+        //BattleRepositoryInterface $battleRepository,
         LevelService $levelService,
         InventoryService $inventoryService
     )
     {
         $this->characterFactory = $characterFactory;
         $this->characterRepository = $characterRepository;
-        $this->raceRepository = $raceRepository;
-        $this->battleRepository = $battleRepository;
+        $this->characterClassRepository = $characterClassRepository;
+        //$this->battleRepository = $battleRepository;
         $this->levelService = $levelService;
         $this->inventoryService = $inventoryService;
     }
@@ -71,10 +70,10 @@ class CharacterService
     {
         $characterId = $this->characterRepository->nextIdentity();
 
-        $race = $this->raceRepository->getOne($command->getRaceId());
+        $characterClass = $this->characterRepository->getOne($command->getCharacterClassId());
         $inventory = $this->inventoryService->create(new CreateInventoryCommand($characterId));
 
-        $character = $this->characterFactory->create($characterId, $command, $race, $inventory);
+        $character = $this->characterFactory->create($characterId, $command, $characterClass, $inventory);
 
         $this->characterRepository->add($character);
 

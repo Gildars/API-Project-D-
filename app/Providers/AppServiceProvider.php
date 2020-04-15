@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use App\Modules\Character\Application\Contracts\CharacterRepositoryInterface;
 use App\Modules\Character\Application\Contracts\LocationRepositoryInterface;
-use App\Modules\Character\Application\Contracts\RaceRepositoryInterface;
+use App\Modules\Character\Application\Contracts\CharacterClassRepositoryInterface;
 use App\Modules\Character\Infrastructure\Repositories\CharacterRepository;
 use App\Modules\Character\Infrastructure\Repositories\LocationRepository;
 use App\Modules\Equipment\Application\Contracts\InventoryRepositoryInterface;
@@ -13,7 +13,7 @@ use App\Modules\Equipment\Application\Contracts\ItemRepositoryInterface;
 use App\Modules\Equipment\Infrastructure\Repositories\InventoryRepository;
 use App\Modules\Equipment\Infrastructure\Repositories\ItemPrototypeRepository;
 use App\Modules\Equipment\Infrastructure\Repositories\ItemRepository;
-use App\Modules\Character\Infrastructure\Repositories\RaceRepository;
+use App\Modules\Character\Infrastructure\Repositories\CharacterClassRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -51,8 +51,8 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->bind(
-            RaceRepositoryInterface::class,
-            RaceRepository::class
+            CharacterClassRepositoryInterface::class,
+            CharacterClassRepository::class
         );
 
         $this->app->bind(
@@ -73,16 +73,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             BattleRepositoryInterface::class,
             BattleRepository::class
-        );
-
-        $this->app->bind(
-            MessageRepositoryInterface::class,
-            MessageRepository::class
-        );
-
-        $this->app->bind(
-            ImageRepositoryInterface::class,
-            ImageRepository::class
         );
 
 

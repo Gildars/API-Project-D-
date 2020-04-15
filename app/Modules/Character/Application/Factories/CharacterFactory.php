@@ -5,7 +5,7 @@ namespace App\Modules\Character\Application\Factories;
 
 use App\Modules\Character\Application\Commands\CreateCharacterCommand;
 use App\Modules\Character\Domain\CharacterId;
-use App\Modules\Character\Domain\Race;
+use App\Modules\Character\Domain\CharacterClass;
 use App\Modules\Equipment\Domain\Inventory;
 use App\Modules\Character\Domain\Statistics;
 use App\Modules\Character\Domain\Attributes;
@@ -18,27 +18,30 @@ use App\Modules\Character\Domain\Reputation;
 
 class CharacterFactory
 {
-    public function create(CharacterId $characterId, CreateCharacterCommand $command, Race $race, Inventory $inventory): Character
-    {
+    public function create(
+        CharacterId $characterId,
+        CreateCharacterCommand $command,
+        CharacterClass $characterClass,
+        Inventory $inventory
+    ): Character {
         return new Character(
             $characterId,
-            $race->getId(),
+            $characterClass->getId(),
             1,
-            $race->getStartingLocationId(),
+            $characterClass->getStartingLocationId(),
             $command->getName(),
             new Gender($command->getGender()),
             0,
             new Money(0),
             new Reputation(0),
             new Attributes([
-                'strength' => $race->getStrength(),
-                'agility' => $race->getAgility(),
-                'constitution' => $race->getConstitution(),
-                'intelligence' => $race->getIntelligence(),
-                'charisma' => $race->getCharisma(),
+                'strength' => $characterClass->getStrength(),
+                'agility' => $characterClass->getAgility(),
+                'stamina' => $characterClass->getStamina(),
+                'intelligence' => $characterClass->getIntelligence(),
                 'unassigned' => 0,
             ]),
-            HitPoints::byRace($race),
+            HitPoints::byCharacterClass($characterClass),
             new Statistics([
                 'battlesLost' => 0,
                 'battlesWon' => 0,

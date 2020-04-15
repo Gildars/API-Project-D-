@@ -28,9 +28,8 @@ class CreateCharactersTable extends Migration
             // attributes
             $table->integer('strength');
             $table->integer('agility');
-            $table->integer('constitution');
+            $table->integer('stamina');
             $table->integer('intelligence');
-            $table->integer('charisma');
 
             // stats
             $table->integer('hit_points');
@@ -47,6 +46,9 @@ class CreateCharactersTable extends Migration
 
             $table->uuid('location_id');
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('restrict');
+
+            $table->unsignedInteger('character_class_id');
+            $table->foreign('character_class_id')->references('id')->on('character_classes')->onDelete('restrict');
 
             $table->timestamps();
         });

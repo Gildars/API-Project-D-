@@ -7,8 +7,6 @@ use App\Http\Requests\Auth\StoreUserRequest;
 use App\Http\Requests\User\UpdateCharacterRequest;
 use App\Modules\User\Application\Services\UserService;
 use App\Modules\User\UI\Http\CommandMappers\CreateUserCommandMapper;
-use App\Repositories\UserRepository;
-use App\Services\Auth\LoginService;
 use App\Services\Auth\RegisterService;
 use Dingo\Api\Routing\Helpers;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -35,26 +33,18 @@ class RegisterController extends BaseController
 
 
     /**
-     * @var UserRepository
-     */
-    protected $userRepository;
-
-    /**
      * @var RegisterService
      */
     protected $registerService;
 
     /**
      * Create a new controller instance.
-     *
-     * @param UserService $userService
-     * @param CreateUserCommandMapper $mapper
+     * @param RegisterService $registerService
      */
-    public function __construct(UserService $userService, CreateUserCommandMapper $mapper)
+    public function __construct(RegisterService $registerService)
     {
         parent::__construct();
-        $this->userService = $userService;
-        $this->mapper = $mapper;
+        $this->registerService = $registerService;
     }
 
     /**
@@ -86,10 +76,6 @@ class RegisterController extends BaseController
      */
     public function register(StoreUserRequest $request)
     {
-        $request = $this->mapper->map($request);
-
-         $this->userService->create($request);
-
         if ($token = $this->registerService->createUserAndAuthorize($request)) {
             return response()->json(
                 [
@@ -100,7 +86,7 @@ class RegisterController extends BaseController
             );
 
         } else {
-            return response()->json("User Not Found...", 404);
+            return response()->json(['message' => 'User Not Found'], 404);
         }
     }
 

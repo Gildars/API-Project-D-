@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Auth;
 
-use App\Models\CharacterClass;
+use App\CharacterClass;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -32,7 +32,7 @@ class StoreUserRequest extends FormRequest
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|max:28',
             'name' => 'required|alpha|min:2|max:12|unique:users',
-            'class' => [
+            'class_id' => [
                 'required',
                 Rule::in($classes),
             ],

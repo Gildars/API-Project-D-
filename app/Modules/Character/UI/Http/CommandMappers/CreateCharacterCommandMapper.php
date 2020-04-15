@@ -17,7 +17,7 @@ class CreateCharacterCommandMapper
         return new CreateCharacterCommand(
             $request->input('name'),
             $request->input('gender'),
-            $request->input('race_id'),
+            $request->input('class_id'),
             $userModel->getId()
         );
     }
