@@ -117,7 +117,7 @@ class LoginController extends BaseController
             'token_type' => 'bearer',
             'expires_in' => Carbon::now('UTC')->addMinutes(auth()->factory()->getTTL())->timestamp,
             'user' => $user->toArray()
-            , 200]);
+        ],200);
     }
 
     /**

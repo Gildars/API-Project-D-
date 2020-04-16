@@ -31,7 +31,8 @@ class StoreUserRequest extends FormRequest
         return [
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|max:28',
-            'name' => 'required|alpha|min:2|max:12|unique:users',
+            'name' => 'required|unique:characters,name|min:2|max:12',
+            'gender' => 'required|in:male,female',
             'class_id' => [
                 'required',
                 Rule::in($classes),

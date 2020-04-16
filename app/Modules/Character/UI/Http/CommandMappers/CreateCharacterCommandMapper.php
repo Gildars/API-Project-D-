@@ -3,22 +3,21 @@
 
 namespace App\Modules\Character\UI\Http\CommandMappers;
 
+use App\Http\Requests\Auth\StoreUserRequest;
 use App\Modules\Character\Application\Commands\CreateCharacterCommand;
-use Illuminate\Http\Request;
-use App\User as UserModel;
+use App\User;
+use Dingo\Api\Routing\Helpers;
 
 class CreateCharacterCommandMapper
 {
-    public function map(Request $request): CreateCharacterCommand
+    use Helpers;
+    public function map(StoreUserRequest $request, User $user): CreateCharacterCommand
     {
-        /** @var UserModel $userModel */
-        $userModel = $request->user();
-
         return new CreateCharacterCommand(
             $request->input('name'),
             $request->input('gender'),
             $request->input('class_id'),
-            $userModel->getId()
+            $user->getId()
         );
     }
 }

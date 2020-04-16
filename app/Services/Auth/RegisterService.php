@@ -2,6 +2,7 @@
 
 namespace App\Services\Auth;
 
+use App\Http\Requests\Auth\StoreUserRequest;
 use App\Modules\Character\Application\Services\CharacterService;
 use App\Modules\Character\UI\Http\CommandMappers\CreateCharacterCommandMapper;
 use App\Modules\User\Application\Services\UserService;
@@ -76,18 +77,19 @@ class RegisterService
      * @param array $request
      * @return bool|string
      */
-    public function createUserAndAuthorize(Request $request)
+    public function createUserAndAuthorize(StoreUserRequest $request)
     {
         DB::beginTransaction();
         try {
             // Create User
             $userCommandMapper = $this->userCommandMapper->map($request);
-            $user = $this->userService->create($userCommandMapper);
-
+            if ($user = $this->userService->create($userCommandMapper)) {
+                $token = $this->loginService->authorization($request, $this->userRepository);
+            }
             //Create Character
-            $createCharacterCommand = $this->characterCommandMapper->map($request);
+            $createCharacterCommand = $this->characterCommandMapper->map($request, $user);
             $character = $this->characterService->create($createCharacterCommand);
-            if ($user && $character && ($token = $this->loginService->authorization($request, $this->userRepository))) {
+            if ($user && $character && $token) {
                 DB::commit();
                 return $token;
             }
@@ -96,20 +98,4 @@ class RegisterService
         }
         return false;
     }
-
-
-    /**
-     * @param  Request $request
-     * @return \Illuminate\Auth\GenericUser|\Illuminate\Database\Eloquent\Model
-     */
-    /* public function createCharacter(Request $request)
-     {
-         $user = $this->auth()->user();
-         if (!$user->name) {
-             $user->name = $request->name;
-             $user->gender = $request->gender;
-             $user->update();
-         }
-         return $user;
-     }*/
 }

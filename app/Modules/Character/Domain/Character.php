@@ -6,7 +6,6 @@ namespace App\Modules\Character\Domain;
 use App\Modules\Equipment\Domain\Inventory;
 use App\Modules\Equipment\Domain\Item;
 use App\Modules\Equipment\Domain\ItemEffect;
-use App\Modules\Image\Domain\ImageId;
 use App\Traits\ThrowsDice;
 
 class Character

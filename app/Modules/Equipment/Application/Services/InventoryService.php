@@ -21,6 +21,15 @@ class InventoryService
         $this->inventoryRepository = $inventoryRepository;
     }
 
+    public function make(CreateInventoryCommand $command): Inventory
+    {
+        $id = $this->inventoryRepository->nextIdentity();
+
+        $inventory = new Inventory($id, $command->getCharacterId(), Collection::make());
+
+        return $inventory;
+    }
+
     public function create(CreateInventoryCommand $command):Inventory
     {
         $id = $this->inventoryRepository->nextIdentity();

@@ -19,8 +19,10 @@ use App\Modules\Character\Application\Commands\MoveCharacterCommand;
 use App\Modules\Character\Application\Factories\CharacterFactory;
 use App\Modules\Equipment\Application\Commands\CreateInventoryCommand;
 use App\Modules\Equipment\Application\Services\InventoryService;
+use App\Modules\Equipment\Domain\Inventory;
 use App\Modules\Level\Application\Services\LevelService;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
 
 class CharacterService
 {
@@ -70,12 +72,16 @@ class CharacterService
     {
         $characterId = $this->characterRepository->nextIdentity();
 
-        $characterClass = $this->characterRepository->getOne($command->getCharacterClassId());
-        $inventory = $this->inventoryService->create(new CreateInventoryCommand($characterId));
+        $characterClass = $this->characterClassRepository->getOne($command->getCharacterClassId());
+
+        $inventoryCommand = new CreateInventoryCommand($characterId);
+        $inventory =  $this->inventoryService->make($inventoryCommand);
 
         $character = $this->characterFactory->create($characterId, $command, $characterClass, $inventory);
-
         $this->characterRepository->add($character);
+
+        $this->inventoryService->create(new CreateInventoryCommand($characterId));
+
 
         return $character;
     }

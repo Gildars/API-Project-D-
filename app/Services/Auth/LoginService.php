@@ -41,7 +41,6 @@ class LoginService
     public function authorization(Request $request, UserRepository $userRepository)
     {
         $user = $userRepository->getByEmail($request->email);
-
         if ($this->comparePassword($user, $request->password)) {
             $token = $this->getTokenFromUser($user);
             return [
