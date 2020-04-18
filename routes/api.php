@@ -52,56 +52,77 @@ $api->version('v1', function ($api) {
             });
 
             $api->group([
-                'prefix' => 'friends'
+                'middleware' => [
+                    'has.character'
+                ],
             ], function ($api) {
-                $api->post('/{name}', 'App\Http\Api\Controllers\FriendController@add')
-                    ->where(['name' => '[а-яА-ЯёЁa-zA-Z0-9]+']);
-                $api->get('/{skip?}', 'App\Http\Api\Controllers\FriendController@getFriends')
-                    ->where(['skip' => '[0-9]{2}+']);
-                $api->delete(
-                    '/{id}',
-                    'App\Http\Api\Controllers\FriendController@deleteFriend'
-                )->where(['id' => '[0-9]+']);
-            });
 
-            $api->group([
-                'prefix' => 'messages'
-            ], function ($api) {
-                $api->post('/{id}/{skip?}', 'App\Http\Api\Controllers\MessageController@sendMessage');
-                $api->delete(
-                    '/{id}',
-                    'App\Http\Api\Controllers\MessageController@deleteMessage'
-                )->where(['id' => '[0-9]+']);
-                $api->get(
-                    '/{receiverId}/{offset?}',
-                    'App\Http\Api\Controllers\MessageController@chatHistory'
-                )->where([
-                    'receiverId' => '[0-9]+',
-                    'offset' => '[0-9]+'
-                ]);
-            });
+                $api->group([
+                    'prefix' => 'inventory'
+                ], function ($api) {
+                    $api->get('/', 'App\Http\Api\Controllers\InventoryController@getInventory');
+                    $api->post(
+                        '/item/{item}/equip',
+                        'App\Http\Api\Controllers\InventoryController@equipItem'
+                    );
+                    $api->post(
+                        '/item/{item}/un-equip',
+                        'App\Http\Api\Controllers\InventoryController@unEquipItem'
+                    );
+                });
 
-            $api->group([
-                'prefix' => 'threads'
-            ], function ($api) {
-                $api->get(
-                    '/{skip?}',
-                    'App\Http\Api\Controllers\ThreadsController@getInbox'
-                )->where([
-                    'skip' => '[0-9]+',
-                ]);
-                $api->delete(
-                    '/{id}',
-                    'App\Http\Api\Controllers\ThreadsController@deleteConversation'
-                )->where([
-                    'id' => '[0-9]+',
-                ]);
-            });
-            $api->group([
-               'prefix' => 'stats'
-            ], function ($api) {
-                $api->get('/', 'App\Http\Api\Controllers\StatController@getStats');
-                $api->post('/', 'App\Http\Api\Controllers\StatController@increaseStats');
+                $api->group([
+                    'prefix' => 'friends'
+                ], function ($api) {
+                    $api->post('/{name}', 'App\Http\Api\Controllers\FriendController@add')
+                        ->where(['name' => '[а-яА-ЯёЁa-zA-Z0-9]+']);
+                    $api->get('/{skip?}', 'App\Http\Api\Controllers\FriendController@getFriends')
+                        ->where(['skip' => '[0-9]{2}+']);
+                    $api->delete(
+                        '/{id}',
+                        'App\Http\Api\Controllers\FriendController@deleteFriend'
+                    )->where(['id' => '[0-9]+']);
+                });
+
+                $api->group([
+                    'prefix' => 'messages'
+                ], function ($api) {
+                    $api->post('/{id}/{skip?}', 'App\Http\Api\Controllers\MessageController@sendMessage');
+                    $api->delete(
+                        '/{id}',
+                        'App\Http\Api\Controllers\MessageController@deleteMessage'
+                    )->where(['id' => '[0-9]+']);
+                    $api->get(
+                        '/{receiverId}/{offset?}',
+                        'App\Http\Api\Controllers\MessageController@chatHistory'
+                    )->where([
+                        'receiverId' => '[0-9]+',
+                        'offset' => '[0-9]+'
+                    ]);
+                });
+
+                $api->group([
+                    'prefix' => 'threads'
+                ], function ($api) {
+                    $api->get(
+                        '/{skip?}',
+                        'App\Http\Api\Controllers\ThreadsController@getInbox'
+                    )->where([
+                        'skip' => '[0-9]+',
+                    ]);
+                    $api->delete(
+                        '/{id}',
+                        'App\Http\Api\Controllers\ThreadsController@deleteConversation'
+                    )->where([
+                        'id' => '[0-9]+',
+                    ]);
+                });
+                $api->group([
+                    'prefix' => 'stats'
+                ], function ($api) {
+                    $api->get('/', 'App\Http\Api\Controllers\StatController@getStats');
+                    $api->post('/', 'App\Http\Api\Controllers\StatController@increaseStats');
+                });
             });
         });
     });

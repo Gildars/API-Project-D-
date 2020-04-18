@@ -70,6 +70,7 @@ class Kernel extends HttpKernel
             'talk' => \Nahid\Talk\Middleware\TalkMiddleware::class,
             'jwt.auth' => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
             'jwt.refresh' => \Tymon\JWTAuth\Middleware\RefreshToken::class,
+            'has.character' => \App\Http\Middleware\HasCharacter::class,
         ];
 
     /**

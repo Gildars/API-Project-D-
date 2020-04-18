@@ -8,12 +8,14 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
  * @property Character character
  * @property integer id
  */
-class User extends Model
+class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
@@ -77,5 +79,34 @@ class User extends Model
     public function isOnline(): bool
     {
         return Cache::has('last-user-activity-' . $this->id);
+    }
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
+
+    /** Returns the value online or offline player.
+     * @return bool
+     */
+    public function getIsOnlineAttribute()
+    {
+        $expiresAt = Carbon::now()->subMinute(5);
+        return ($this->last_activity > $expiresAt) ? true : false;
     }
 }
