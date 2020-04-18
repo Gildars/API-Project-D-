@@ -24,22 +24,6 @@ class CreateLocationsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('adjacent_location', static function (Blueprint $table) {
-
-            $table->uuid('location_id')->index();
-            $table->uuid('adjacent_location_id')->index();
-
-            $table->primary(['location_id', 'adjacent_location_id']);
-
-            $table->enum('direction', Location::getDirections());
-
-            $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
-            $table->foreign('adjacent_location_id')->references('id')->on('locations')->onDelete('cascade');
-
-            $table->timestamps();
-        });
-
-
         /** @var LocationRepositoryInterface $locationRepository */
         $locationRepository = resolve(LocationRepositoryInterface::class);
 
@@ -70,33 +54,6 @@ class CreateLocationsTable extends Migration
             Location::query()->forceCreate($location);
         }
 
-        $adjacent_locations = [
-            [
-                'location_id' => $locations[0]['id'],
-                'adjacent_location_id' => $locations[1]['id'],
-                'direction' => 'north',
-            ],
-            [
-                'location_id' => $locations[0]['id'],
-                'adjacent_location_id' => $locations[2]['id'],
-                'direction' => 'east',
-            ],
-            [
-                'location_id' => $locations[0]['id'],
-                'adjacent_location_id' => $locations[3]['id'],
-                'direction' => 'south',
-            ],
-        ];
-
-        foreach ($adjacent_locations as $record) {
-            /** @var  $location \App\Location */
-            $location = Location::query()->find($record['location_id']);
-
-            /** @var  $adjacent_location \App\Location */
-            $adjacent_location = Location::query()->find($record['adjacent_location_id']);
-
-            $location->addAdjacentLocation($adjacent_location, $record['direction']);
-        }
     }
 
     /**
@@ -106,7 +63,6 @@ class CreateLocationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('adjacent_location');
         Schema::dropIfExists('locations');
     }
 }
