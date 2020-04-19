@@ -73,12 +73,12 @@ class CharacterRepository implements CharacterRepositoryInterface
         return $this->characterReconstitutionFactory->reconstitute($characterModel);
     }
 
-    public function update(Character $character): void
+    public function update(Character $character): bool
     {
         /** @var CharacterModel $characterModel */
         $characterModel = CharacterModel::query()->findOrFail($character->getId()->toString());
 
-        $characterModel->update([
+       return $characterModel->update([
             'name' => $character->getName(),
             'gender' => $character->getGender()->getValue(),
 

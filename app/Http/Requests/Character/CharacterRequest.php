@@ -1,18 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Conversation;
+namespace App\Http\Requests\Character;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
 
-/**
- * Class StoreConversationMessageRequest
- *
- * @package App\Http\Requests\Converstion
- */
-class DeleteConversationRequest extends FormRequest
+class CharacterRequest extends FormRequest
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -20,7 +14,7 @@ class DeleteConversationRequest extends FormRequest
      */
     public function authorize()
     {
-        return \Illuminate\Support\Facades\Auth::check();
+        return Auth::id();
     }
 
     /**
@@ -31,7 +25,7 @@ class DeleteConversationRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => "required|integer|exists:conversations",
+            'name' => 'required|alpha|min:2|max:12',
         ];
     }
 
@@ -39,7 +33,7 @@ class DeleteConversationRequest extends FormRequest
     {
         // Include the next line if you need form data, too.
         $request = parent::all();
-        $request['id'] = $this->route('id');
+        $request['name'] = $this->route('name');
         return $request;
     }
 }

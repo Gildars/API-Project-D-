@@ -41,7 +41,7 @@ class CharacterService
     /**
      * @var BattleRepositoryInterface
      */
-   // private $battleRepository;
+    // private $battleRepository;
     /**
      * @var LevelService
      */
@@ -58,8 +58,7 @@ class CharacterService
         //BattleRepositoryInterface $battleRepository,
         LevelService $levelService,
         InventoryService $inventoryService
-    )
-    {
+    ) {
         $this->characterFactory = $characterFactory;
         $this->characterRepository = $characterRepository;
         $this->characterClassRepository = $characterClassRepository;
@@ -75,7 +74,7 @@ class CharacterService
         $characterClass = $this->characterClassRepository->getOne($command->getCharacterClassId());
 
         $inventoryCommand = new CreateInventoryCommand($characterId);
-        $inventory =  $this->inventoryService->make($inventoryCommand);
+        $inventory = $this->inventoryService->make($inventoryCommand);
 
         $character = $this->characterFactory->create($characterId, $command, $characterClass, $inventory);
         $this->characterRepository->add($character);
@@ -86,22 +85,21 @@ class CharacterService
         return $character;
     }
 
-    public function increaseAttribute(IncreaseAttributeCommand $command): void
+    public function increaseAttribute(IncreaseAttributeCommand $command): bool
     {
         $character = $this->characterRepository->getOne($command->getCharacterId());
 
         $character->applyAttributeIncrease($command->getAttribute());
-
-        $this->characterRepository->update($character);
+        return $this->characterRepository->update($character);
     }
 
-    public function move(MoveCharacterCommand $command): void
+    public function move(MoveCharacterCommand $command): bool
     {
         $character = $this->characterRepository->getOne($command->getCharacterId());
 
         $character->setLocationId($command->getLocationId());
 
-        $this->characterRepository->update($character);
+        return $this->characterRepository->update($character);
     }
 
     public function attack(AttackCharacterCommand $command): BattleId
@@ -142,23 +140,5 @@ class CharacterService
 
             return $battleId;
         });
-    }
-
-    public function updateProfilePicture(Image $picture): void
-    {
-        $character = $this->characterRepository->getOne($picture->getCharacterId());
-
-        $character->setProfilePictureId($picture->getId());
-
-        $this->characterRepository->update($character);
-    }
-
-    public function removeProfilePicture(CharacterId $characterId): void
-    {
-        $character = $this->characterRepository->getOne($characterId);
-
-        $character->removeProfilePicture();
-
-        $this->characterRepository->update($character);
     }
 }

@@ -31,7 +31,6 @@ class CharacterReconstitutionFactory
     {
         $inventory = $this->inventoryReconstitutionFactory->reconstitute($characterModel->inventory);
 
-
         $character = new Character(
             CharacterId::fromString($characterModel->getId()),
             $characterModel->getCharacterId(),

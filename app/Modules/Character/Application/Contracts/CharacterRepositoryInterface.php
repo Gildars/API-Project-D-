@@ -13,5 +13,5 @@ interface CharacterRepositoryInterface
 
     public function getOne(CharacterId $characterId): Character;
 
-    public function update(Character $character): void;
+    public function update(Character $character): bool;
 }

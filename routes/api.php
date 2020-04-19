@@ -29,7 +29,7 @@ $api->version('v1', function ($api) {
         $api->group([
             'middleware' => [
                 'api',
-                'jwt.refresh',
+                'jwt.auth',
                 'LastActivityUser'
             ],
         ], function ($api) {
@@ -82,6 +82,14 @@ $api->version('v1', function ($api) {
                         '/{id}',
                         'App\Http\Api\Controllers\FriendController@deleteFriend'
                     )->where(['id' => '[0-9]+']);
+                });
+
+                $api->group([
+                    'prefix' => 'character'
+                ], function ($api) {
+                    $api->get('/name/{name}', 'App\Http\Api\Controllers\CharacterController@getCharacterByName');
+                    $api->get('/id/{id}', 'App\Http\Api\Controllers\CharacterController@getCharacterById');
+                    $api->put('/', 'App\Http\Api\Controllers\CharacterController@update');
                 });
 
                 $api->group([

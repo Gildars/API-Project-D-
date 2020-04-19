@@ -16,7 +16,7 @@ class LocationController
      *     path="/location",
      *     description="Возвращает данные о текущей локации.",
      *     tags={"location"},
-     * @OA\Response(response="200", description="Возвращает данные о локации.")
+     * @OA\Response(response="200", description="Возвращает данные о локации."),
      * @OA\Response(response="404", description="Локация не найдена.")
      * )
      */

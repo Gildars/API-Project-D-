@@ -258,8 +258,8 @@ class Character
 
             $this->attributes = $this->attributes->assignAvailablePoint($attribute);
 
-            if ($attribute === 'constitution') {
-                $this->hitPoints = $this->hitPoints->withIncrementedConstitution();
+            if ($attribute === 'stamina') {
+                $this->hitPoints = $this->hitPoints->withIncrementedStamina();
             }
         }
     }
