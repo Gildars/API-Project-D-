@@ -2,7 +2,7 @@
 
 namespace App\Services\Auth;
 
-use App\Models\User;
+use App\User;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Facades\JWTAuth;

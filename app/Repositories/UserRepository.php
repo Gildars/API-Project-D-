@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\User;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
@@ -53,7 +53,7 @@ class UserRepository extends BaseRepository
      */
     public function getByEmail(string $email)
     {
-        $user = $this->model->where('email', $email)->first();
+        $user = $this->model->where('email', '=', $email)->first();
         return $user;
     }
 
