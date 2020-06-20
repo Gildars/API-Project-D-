@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Modules\Battle\Application\Contracts\BattleRepositoryInterface;
+use App\Modules\Battle\Infrastructure\Repositories\BattleRepository;
 use App\Modules\Character\Application\Contracts\CharacterRepositoryInterface;
 use App\Modules\Character\Application\Contracts\LocationRepositoryInterface;
 use App\Modules\Character\Application\Contracts\CharacterClassRepositoryInterface;

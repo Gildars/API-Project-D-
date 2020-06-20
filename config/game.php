@@ -2,7 +2,7 @@
 
 return [
     'communicator' => [
-        'max_friends' => 2
+        'max_friends' => 10
         ,
     ],
     'user' => [

@@ -14,7 +14,6 @@ use Illuminate\Http\Request;
 */
 
 $api = app('Dingo\Api\Routing\Router');
-
 $api->version('v1', function ($api) {
     $api->group([
         'middleware' => [
@@ -90,6 +89,7 @@ $api->version('v1', function ($api) {
                     $api->get('/name/{name}', 'App\Http\Api\Controllers\CharacterController@getCharacterByName');
                     $api->get('/id/{id}', 'App\Http\Api\Controllers\CharacterController@getCharacterById');
                     $api->put('/', 'App\Http\Api\Controllers\CharacterController@update');
+                    $api->get('/attack/{defenderId}', 'App\Http\Api\Controllers\CharacterController@attack');
                 });
 
                 $api->group([

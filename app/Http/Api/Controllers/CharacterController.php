@@ -3,6 +3,7 @@
 namespace App\Http\Api\Controllers;
 
 use App\Character;
+use App\Http\Controllers\BaseController;
 use App\Http\Requests\Character\CharacterRequest;
 use App\Modules\Character\Application\Services\CharacterService;
 use App\Modules\Character\UI\Http\CommandMappers\AttackCharacterCommandMapper;
@@ -16,7 +17,7 @@ use Illuminate\Http\Request;
 use OpenApi\Annotations\OpenApi;
 use Symfony\Component\HttpFoundation\Response;
 
-class CharacterController
+class CharacterController extends BaseController
 {
     use Helpers;
     /**
@@ -134,21 +135,13 @@ class CharacterController
     }
 
     public function attack(
-        string $defenderId,
         Request $request,
         AttackCharacterCommandMapper $commandMapper
     ): Response
     {
-        $fd = 1; // Find fd by userId from a map [userId=>fd].
-        /**@var \Swoole\WebSocket\Server $swoole */
-        $swoole = app('swoole');
-        $success = $swoole->push($fd, 'Push data to fd#1 in Controller');
-        var_dump($success);
-
-        $attackCharacterCommand = $commandMapper->map($request, $defenderId);
-
+        $attackCharacterCommand = $commandMapper->map($request, $request->defenderId);
         $battleId = $this->characterService->attack($attackCharacterCommand);
 
-        return redirect()->route('battle.show', $battleId->toString());
+        return response()->json($battleId->toString());
     }
 }

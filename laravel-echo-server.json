@@ -1,41 +1,41 @@
 {
-	"authHost": "http://api.elonica.local",
-	"authEndpoint": "/broadcasting/auth",
-	"clients": [
-		{
-			"appId": "bfca476d3a48b2d1",
-			"key": "368b82187edfc19e14318aa0f6774e50"
-		},
-		{
-			"appId": "APP_ID",
-			"key": "869ceee40becb2067a8f4fe5db0c03e2"
-		}
-	],
-	"database": "redis",
-	"databaseConfig": {
-		"redis": {},
-		"sqlite": {
-			"databasePath": "/database/laravel-echo-server.sqlite"
-		}
-	},
-	"devMode": true,
-	"host": null,
-	"port": "6001",
-	"protocol": "http",
-	"socketio": {},
-	"secureOptions": 67108864,
-	"sslCertPath": "",
-	"sslKeyPath": "",
-	"sslCertChainPath": "",
-	"sslPassphrase": "",
-	"subscribers": {
-		"http": true,
-		"redis": true
-	},
-	"apiOriginAllow": {
-		"allowCors": true,
-		"allowOrigin": "*",
-		"allowMethods": "GET, POST",
-		"allowHeaders": "Origin, Content-Type, X-Auth-Token, X-Requested-With, Accept, Authorization, X-CSRF-TOKEN, X-Socket-Id"
-	}
+    "authHost": "http://api.elonica.local",
+    "authEndpoint": "/broadcasting/auth",
+    "clients": [
+        {
+            "appId": "bfca476d3a48b2d1",
+            "key": "368b82187edfc19e14318aa0f6774e50"
+        },
+        {
+            "appId": "APP_ID",
+            "key": "869ceee40becb2067a8f4fe5db0c03e2"
+        }
+    ],
+    "database": "redis",
+    "databaseConfig": {
+        "redis": {},
+        "sqlite": {
+            "databasePath": "/database/laravel-echo-server.sqlite"
+        }
+    },
+    "devMode": true,
+    "host": null,
+    "port": "6001",
+    "protocol": "http",
+    "socketio": {},
+    "secureOptions": 67108864,
+    "sslCertPath": "",
+    "sslKeyPath": "",
+    "sslCertChainPath": "",
+    "sslPassphrase": "",
+    "subscribers": {
+        "http": true,
+        "redis": true
+    },
+    "apiOriginAllow": {
+        "allowCors": true,
+        "allowOrigin": "*",
+        "allowMethods": "GET, POST",
+        "allowHeaders": "Origin, Content-Type, X-Auth-Token, X-Requested-With, Accept, Authorization, X-CSRF-TOKEN, X-Socket-Id"
+    }
 }

@@ -17,9 +17,11 @@ class CreatePasswordResetsTable extends Migration
             'password_resets', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->string('email')->index();
+                $table->foreign('email')->references('email')->on('users')->onDelete('restrict');
                 $table->string('token');
                 $table->timestamps();
-            }
+
+        }
         );
     }
 

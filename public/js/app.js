@@ -1930,13 +1930,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       text: '',
       messages: [],
-      token: '',
-      id: '',
+      token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkuZWxvbmljYS5sb2NhbFwvbG9naW4iLCJpYXQiOjE1ODg1OTEyMzQsImV4cCI6MTU4ODU5NDgzNCwibmJmIjoxNTg4NTkxMjM0LCJqdGkiOiJnOE55SlJXd0FCajZPUzVUIiwic3ViIjoxMSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.Iv6faIlYoMUtZRJ3wGDDoUt7PAgwoanwslDkyQQI4HA',
+      defenderId: '',
       idDelete: ''
     };
   },
@@ -1949,7 +1950,7 @@ __webpack_require__.r(__webpack_exports__);
     postMessage: function postMessage() {
       axios.post('messages/send', {
         'message': this.text,
-        'id': this.id
+        'id': this.defenderId
       }, {
         headers: {
           'Authorization': "bearer " + this.token
@@ -1970,8 +1971,8 @@ __webpack_require__.r(__webpack_exports__);
         console.log(data);
       });
     },
-    getMessage: function getMessage() {
-      axios.get("messages/".concat(this.id), {
+    attack: function attack() {
+      axios.get("character/attack/".concat(this.defenderId), {
         headers: {
           'Authorization': "bearer " + this.token
         }
@@ -1980,26 +1981,66 @@ __webpack_require__.r(__webpack_exports__);
         //this.messages.push(data);
         console.log(data);
       });
+    },
+    test: function test() {
+      console.log('test');
+      var ws = new WebSocket('ws://api.elonica.local:5200/ws');
+
+      ws.onopen = function () {
+        console.log('socket connection opened properly');
+        ws.send("Hello World"); // send a message
+
+        console.log('message sent');
+      };
+
+      ws.onmessage = function (evt) {
+        console.log("Message received = " + evt.data);
+      };
+
+      ws.onclose = function () {
+        // websocket is closed.
+        console.log("Connection closed...");
+      };
     }
   },
-  created: function created() {
+  mounted: function mounted() {
+    console.log('test');
+    var ws = new WebSocket('ws://api.elonica.local:5200/ws');
+
+    ws.onopen = function () {
+      console.log('socket connection opened properly');
+      ws.send("Hello World"); // send a message
+
+      console.log('message sent');
+    };
+
+    ws.onmessage = function (evt) {
+      console.log("Message received = " + evt.data);
+    };
+
+    ws.onclose = function () {
+      // websocket is closed.
+      console.log("Connection closed...");
+    };
     /* axios.get('/getAll').then(({data}) => {
          this.messages = data;
      });*/
     // Registered client on public channel to listen to MessageSent event
-    Echo["private"]('chat.1').listen('ChatMessage', function (message) {
-      //this.messages.push(message);
-      console.log(message);
-    });
-    Echo.connector.socket.on('connect', function () {
-      console.log('connected', Echo.socketId());
-    });
-    Echo.connector.socket.on('disconnect', function () {
-      console.log('disconnected');
-    });
-    Echo.connector.socket.on('reconnecting', function (attemptNumber) {
-      console.log('reconnecting', attemptNumber);
-    });
+
+    /* Echo.private('chat.1').listen('ChatMessage', (message) => {
+         //this.messages.push(message);
+         console.log(message)
+     });
+     Echo.connector.socket.on('connect', function () {
+         console.log('connected', Echo.socketId());
+     });
+     Echo.connector.socket.on('disconnect', function () {
+         console.log('disconnected');
+     });
+     Echo.connector.socket.on('reconnecting', function (attemptNumber) {
+         console.log('reconnecting', attemptNumber);
+     });*/
+
   }
 });
 
@@ -6943,7 +6984,7 @@ module.exports = (function() {
 /* WEBPACK VAR INJECTION */(function(global) {/*!
  * The buffer module from node.js, for the browser.
  *
- * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @author   Feross Aboukhadijeh <http://feross.org>
  * @license  MIT
  */
 /* eslint-disable no-proto */
@@ -48940,17 +48981,17 @@ var render = function() {
           {
             name: "model",
             rawName: "v-model",
-            value: _vm.text,
-            expression: "text"
+            value: _vm.defenderId,
+            expression: "defenderId"
           }
         ],
-        domProps: { value: _vm.text },
+        domProps: { value: _vm.defenderId },
         on: {
           input: function($event) {
             if ($event.target.composing) {
               return
             }
-            _vm.text = $event.target.value
+            _vm.defenderId = $event.target.value
           }
         }
       }),
@@ -49013,9 +49054,11 @@ var render = function() {
         }
       }),
       _vm._v(" "),
+      _c("button", { on: { click: _vm.test } }, [_vm._v("Test")]),
+      _vm._v(" "),
       _c("button", { on: { click: _vm.deleteMessage } }, [_vm._v("Delete")]),
       _vm._v(" "),
-      _c("button", { on: { click: _vm.getMessage } }, [
+      _c("button", { on: { click: _vm.attack } }, [
         _vm._v("GetMessagesByUserId")
       ]),
       _vm._v(" "),
@@ -61393,7 +61436,7 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   transports: ['websocket'],
   auth: {
     headers: {
-      Authorization: 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkuZWxvbmljYS5sb2NhbFwvbG9naW4iLCJpYXQiOjE1NzE0OTM4NTgsImV4cCI6MTU3MTQ5NzQ1OCwibmJmIjoxNTcxNDkzODU4LCJqdGkiOiJnbWFnN0JkVzFIQkNYSTNDIiwic3ViIjoyLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffgTksZUrrsKAc_rooHdFKXFJsKviz28Limtufl6WWk'
+      Authorization: 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkuZWxvbmljYS5sb2NhbFwvbG9naW4iLCJpYXQiOjE1ODg1OTEyMzQsImV4cCI6MTU4ODU5NDgzNCwibmJmIjoxNTg4NTkxMjM0LCJqdGkiOiJnOE55SlJXd0FCajZPUzVUIiwic3ViIjoxMSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.Iv6faIlYoMUtZRJ3wGDDoUt7PAgwoanwslDkyQQI4HA'
     }
   }
 });
@@ -61556,8 +61599,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\www\api.elonica.local\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\www\api.elonica.local\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /var/www/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

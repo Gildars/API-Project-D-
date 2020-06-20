@@ -5,7 +5,8 @@ namespace Tests\Unit;
 use App\Models\Friend;
 use Tests\TestCase;
 
-class FriendTest extends TestCase
+class
+FriendTest extends TestCase
 {
 
     public function test_add_a_player_to_friend_with_the_correct_request()

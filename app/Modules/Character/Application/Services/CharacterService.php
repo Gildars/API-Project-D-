@@ -4,10 +4,10 @@
 namespace App\Modules\Character\Application\Services;
 
 
-//use App\Modules\Battle\Application\Contracts\BattleRepositoryInterface;
-//use App\Modules\Battle\Domain\Battle;
-//use App\Modules\Battle\Domain\BattleId;
-//use App\Modules\Battle\Domain\BattleRounds;
+use App\Modules\Battle\Application\Contracts\BattleRepositoryInterface;
+use App\Modules\Battle\Domain\Battle;
+use App\Modules\Battle\Domain\BattleId;
+use App\Modules\Battle\Domain\BattleRounds;
 use App\Modules\Character\Application\Contracts\CharacterClassRepositoryInterface;
 use App\Modules\Character\Domain\CharacterId;
 use App\Modules\Character\Application\Contracts\CharacterRepositoryInterface;
@@ -41,7 +41,7 @@ class CharacterService
     /**
      * @var BattleRepositoryInterface
      */
-    // private $battleRepository;
+     private $battleRepository;
     /**
      * @var LevelService
      */
@@ -51,18 +51,27 @@ class CharacterService
      */
     private $inventoryService;
 
+    /**
+     * CharacterService constructor.
+     * @param CharacterFactory $characterFactory
+     * @param CharacterRepositoryInterface $characterRepository
+     * @param CharacterClassRepositoryInterface $characterClassRepository
+     * @param BattleRepositoryInterface $battleRepository
+     * @param LevelService $levelService
+     * @param InventoryService $inventoryService
+     */
     public function __construct(
         CharacterFactory $characterFactory,
         CharacterRepositoryInterface $characterRepository,
         CharacterClassRepositoryInterface $characterClassRepository,
-        //BattleRepositoryInterface $battleRepository,
+        BattleRepositoryInterface $battleRepository,
         LevelService $levelService,
         InventoryService $inventoryService
     ) {
         $this->characterFactory = $characterFactory;
         $this->characterRepository = $characterRepository;
         $this->characterClassRepository = $characterClassRepository;
-        //$this->battleRepository = $battleRepository;
+        $this->battleRepository = $battleRepository;
         $this->levelService = $levelService;
         $this->inventoryService = $inventoryService;
     }

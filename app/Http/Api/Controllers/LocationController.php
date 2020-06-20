@@ -2,9 +2,10 @@
 
 namespace App\Http\Api\Controllers;
 
+use App\Http\Controllers\BaseController;
 use App\Location;
 
-class LocationController
+class LocationController extends BaseController
 {
 
     public function __construct()

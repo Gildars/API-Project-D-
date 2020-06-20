@@ -15,10 +15,12 @@ class CreateFriendsTable extends Migration
     {
         Schema::create(
             'friends', function (Blueprint $table) {
-                $table->bigIncrements('id');
-                $table->bigInteger('id_friend_one');
-                $table->bigInteger('id_friend_two');
-            }
+                $table->uuid('id')->primary();
+                $table->uuid('id_friend_one');
+                $table->uuid('id_friend_two');
+                $table->foreign('id_friend_one')->references('id')->on('characters')->onDelete('restrict');
+                $table->foreign('id_friend_two')->references('id')->on('characters')->onDelete('restrict');
+        }
         );
     }
 

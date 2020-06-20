@@ -53,7 +53,7 @@ window.Echo = new Echo({
     transports: ['websocket'],
     auth: {
         headers: {
-            Authorization: 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkuZWxvbmljYS5sb2NhbFwvbG9naW4iLCJpYXQiOjE1NzE0OTM4NTgsImV4cCI6MTU3MTQ5NzQ1OCwibmJmIjoxNTcxNDkzODU4LCJqdGkiOiJnbWFnN0JkVzFIQkNYSTNDIiwic3ViIjoyLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ffgTksZUrrsKAc_rooHdFKXFJsKviz28Limtufl6WWk'
+            Authorization: 'Bearer ' + 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkuZWxvbmljYS5sb2NhbFwvbG9naW4iLCJpYXQiOjE1ODg1OTEyMzQsImV4cCI6MTU4ODU5NDgzNCwibmJmIjoxNTg4NTkxMjM0LCJqdGkiOiJnOE55SlJXd0FCajZPUzVUIiwic3ViIjoxMSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.Iv6faIlYoMUtZRJ3wGDDoUt7PAgwoanwslDkyQQI4HA'
         },
     },
 });

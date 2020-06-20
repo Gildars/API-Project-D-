@@ -17,6 +17,7 @@ class CreateMailConfirmations extends Migration
             'mail_confirmations', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->string('email')->index();
+                $table->foreign('email')->references('email')->on('users')->onDelete('restrict');
                 $table->string('token');
                 $table->timestamps();
             }

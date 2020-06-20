@@ -1,12 +1,13 @@
 <template>
     <div>
         <p v-for="message in messages">{{ message }}</p>
-        <input v-model="text">
+        <input v-model="defenderId">
         <input v-model="token" placeholder="token">
         <input v-model="id" placeholder="id">
         <input v-model="idDelete" placeholder="id delete">
+        <button @click="test">Test</button>
         <button @click="deleteMessage">Delete</button>
-        <button @click="getMessage">GetMessagesByUserId</button>
+        <button @click="attack">GetMessagesByUserId</button>
         <button @click="postMessage">submit</button>
     </div>
 </template>
@@ -17,8 +18,8 @@
             return {
                 text: '',
                 messages: [],
-                token: '',
-                id: '',
+                token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkuZWxvbmljYS5sb2NhbFwvbG9naW4iLCJpYXQiOjE1ODg1OTEyMzQsImV4cCI6MTU4ODU5NDgzNCwibmJmIjoxNTg4NTkxMjM0LCJqdGkiOiJnOE55SlJXd0FCajZPUzVUIiwic3ViIjoxMSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.Iv6faIlYoMUtZRJ3wGDDoUt7PAgwoanwslDkyQQI4HA',
+                defenderId: '',
                 idDelete: ''
             }
         },
@@ -31,7 +32,7 @@
             postMessage() {
                 axios.post('messages/send', {
                     'message': this.text,
-                    'id': this.id
+                    'id': this.defenderId
                 }, {headers: {'Authorization': "bearer " + this.token}}).then(({data}) => {
                     //this.messages.push(data);
                     console.log(data);
@@ -42,20 +43,54 @@
                     console.log(data);
                 });
             },
-            getMessage() {
-                axios.get(`messages/${this.id}`, {headers: {'Authorization': "bearer " + this.token}}).then(({data}) => {
+            attack() {
+                axios.get(`character/attack/${this.defenderId}`, {headers: {'Authorization': "bearer " + this.token}}).then(({data}) => {
                     //this.messages.push(data);
                     console.log(data);
                 });
+            },
+            test(){
+                console.log('test');
+                let ws = new WebSocket('ws://api.elonica.local:5200/ws');
+                ws.onopen = function () {
+                    console.log('socket connection opened properly');
+                    ws.send("Hello World"); // send a message
+                    console.log('message sent');
+                };
+
+                ws.onmessage = function (evt) {
+                    console.log("Message received = " + evt.data);
+                };
+
+                ws.onclose = function () {
+                    // websocket is closed.
+                    console.log("Connection closed...");
+                };
             }
 
         },
-        created() {
+        mounted() {
+            console.log('test');
+            let ws = new WebSocket('ws://api.elonica.local:5200/ws');
+            ws.onopen = function () {
+                console.log('socket connection opened properly');
+                ws.send("Hello World"); // send a message
+                console.log('message sent');
+            };
+
+            ws.onmessage = function (evt) {
+                console.log("Message received = " + evt.data);
+            };
+
+            ws.onclose = function () {
+                // websocket is closed.
+                console.log("Connection closed...");
+            };
             /* axios.get('/getAll').then(({data}) => {
                  this.messages = data;
              });*/
             // Registered client on public channel to listen to MessageSent event
-            Echo.private('chat.1').listen('ChatMessage', (message) => {
+           /* Echo.private('chat.1').listen('ChatMessage', (message) => {
                 //this.messages.push(message);
                 console.log(message)
             });
@@ -67,7 +102,7 @@
             });
             Echo.connector.socket.on('reconnecting', function (attemptNumber) {
                 console.log('reconnecting', attemptNumber);
-            });
+            });*/
         }
     }
 </script>

@@ -78,7 +78,11 @@ class User extends Authenticatable implements JWTSubject
 
     public function isOnline(): bool
     {
-        return Cache::has('last-user-activity-' . $this->id);
+        if(Cache::has('last-user-activity-' . $this->id)) {
+            return true;
+        }
+        return false;
+        //return Cache::has('last-user-activity-' . $this->id);
     }
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.

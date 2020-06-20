@@ -2,6 +2,7 @@
 
 namespace App\Http\Api\Controllers;
 
+use App\Character;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\Friend\StoreFriendRequest;
 use App\Repositories\FriendRepository;
@@ -48,7 +49,7 @@ class FriendController extends BaseController
      */
     public function add(UserRepository $userRepository, StoreFriendRequest $request, string $name)
     {
-        if ($this->friendRepository->getCountFriends($this->auth->user()->id) >= config('game.communicator.max_friends')) {
+        if ($this->friendRepository->getCountFriends($this->auth->user()->character->id) >= config('game.communicator.max_friends')) {
             return response(
                 [
                     'message' =>  trans('messages.friends.max_friends')
@@ -56,7 +57,7 @@ class FriendController extends BaseController
             );
         }
 
-        if ($request->name == $this->auth->user()->name) {
+        if ($request->name == $this->auth->user()->character->name) {
             return response(
                 [
                 'message' => trans('messages.friends.by_myself')
@@ -64,9 +65,9 @@ class FriendController extends BaseController
             );
         }
 
-        $user = $userRepository->getByName($name);
+        $character = Character::where('name',$name)->first();
 
-        if (!$user) {
+        if (!$character) {
             return response(
                 [
                 'message' => trans('messages.friends.not_found')
@@ -74,22 +75,22 @@ class FriendController extends BaseController
             );
         }
 
-        if ($this->friendRepository->getById($user->id)) {
+        if ($this->friendRepository->getById($character->id)) {
             return response(
                 [
-                'message' => trans('messages.friends.already_exists', ['name' => $user->name])
+                'message' => trans('messages.friends.already_exists', ['name' => $character->name])
                 ], 422
             );
         }
 
-        if ($this->friendRepository->create(Auth::id(), $user->id)) {
+        if ($this->friendRepository->create($this->auth->user()->character->id, $character->id)) {
             return response(
                 [
                 'message' => trans(
                     'messages.friends.add_success',
                     [
-                        'id' => $user->id,
-                        'name' => $user->name
+                        'id' => $character->id,
+                        'name' => $character->name
                     ]
                 )
                 ], 201
@@ -109,7 +110,7 @@ class FriendController extends BaseController
      */
     public function getFriends($skip = 0)
     {
-        $friends = $this->friendRepository->getFriends(Auth::id(), $skip);
+        $friends = $this->friendRepository->getFriends($this->auth->user()->character->id, $skip);
         if ($friends) {
             return response()->json($friends, 200);
         }
